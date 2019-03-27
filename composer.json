@@ -1,0 +1,17 @@
+{
+    "name": "agrilife/af4-aglifesciences",
+    "description": "A plugin for The College of Agriculture and Life Sciences' main site on the AgriFlex4 theme. ",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Zachary Watkins",
+            "email": "zachary.watkins@ag.tamu.edu"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+    },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^1.0"
+    }
+}
