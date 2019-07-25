@@ -41,7 +41,22 @@ class Aglifesciences {
 	 */
 	private function __construct() {
 
+		// Require classes.
+		$this->require_classes();
+
 		add_action( 'init', array( $this, 'init' ) );
+
+	}
+
+	/**
+	 * Init action hook
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
+	public function init() {
+
+		$this->register_post_types();
 
 	}
 
@@ -51,11 +66,46 @@ class Aglifesciences {
 	 * @since 0.1.0
 	 * @return void
 	 */
-	public function init() {
+	private function require_classes() {
 
 		/* Set up asset files */
 		require_once ALSAF4_DIR_PATH . 'src/class-assets.php';
-		$ado_assets = new \Aglifesciences\Assets();
+		$als_assets = new \Aglifesciences\Assets();
+
+		// Add page template custom fields.
+		require_once ALSAF4_DIR_PATH . 'src/class-customfields.php';
+		new \Aglifesciences\CustomFields();
+
+	}
+
+	/**
+	 * Initialize custom post types
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
+	public static function register_post_types() {
+
+		/* Add taxonomies */
+		require_once ALSAF4_DIR_PATH . 'src/class-taxonomy.php';
+		new \Aglifesciences\Taxonomy( 'Department', 'study-abroad-department', 'study-abroad' );
+
+		/* Add custom post type */
+		require_once ALSAF4_DIR_PATH . 'src/class-posttype.php';
+		require_once ALSAF4_DIR_PATH . 'src/class-posttemplates.php';
+		new \Aglifesciences\PostType(
+			array(
+				'singular' => 'Study Abroad',
+				'plural'   => 'Study Abroad Programs',
+			),
+			ALSAF4_TEMPLATE_PATH,
+			'study-abroad',
+			'af4-aglifesciences',
+			array(),
+			'dashicons-portfolio',
+			array( 'title', 'editor', 'thumbnail', 'genesis-seo', 'genesis-scripts' ),
+			array( 'single' => 'single-study-abroad.php' )
+		);
 
 	}
 

@@ -26,6 +26,7 @@ define( 'ALSAF4_DIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ALSAF4_DIR_FILE', __FILE__ );
 define( 'ALSAF4_DIR_URL', plugin_dir_url( __FILE__ ) );
 define( 'ALSAF4_TEXTDOMAIN', 'af4-aglifesciences' );
+define( 'ALSAF4_TEMPLATE_PATH', ALSAF4_DIR_PATH . 'templates' );
 
 /**
  * The core plugin class that is used to initialize the plugin
@@ -34,18 +35,23 @@ require ALSAF4_DIR_PATH . 'src/class-aglifesciences.php';
 spl_autoload_register( 'Aglifesciences::autoload' );
 Aglifesciences::get_instance();
 
-/**
- * Notify user of missing dependencies
- */
-register_activation_hook( __FILE__, 'af4_aglifesciences_activation' );
+/* Activation hooks */
+register_deactivation_hook( __FILE__, 'flush_rewrite_rules' );
+register_activation_hook( __FILE__, 'aglifesciences_activation' );
 
 /**
- * Check for missing dependencies
+ * Helper option flag to indicate rewrite rules need flushing
  *
  * @since 0.1.1
  * @return void
  */
-function af4_aglifesciences_activation() {
+function aglifesciences_activation() {
+
+	// Register post types and flush rewrite rules.
+	Aglifesciences::register_post_types();
+	flush_rewrite_rules();
+
+	// Check for missing dependencies.
 	$theme  = wp_get_theme();
 	$plugin = is_plugin_active( 'af4-college/af4-college.php' );
 	if ( 'AgriFlex4' !== $theme->name || false === $plugin ) {
@@ -59,4 +65,5 @@ function af4_aglifesciences_activation() {
 		);
 		wp_die( wp_kses_post( $error ) );
 	}
+
 }
