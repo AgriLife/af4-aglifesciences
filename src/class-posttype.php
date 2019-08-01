@@ -141,7 +141,7 @@ class PostType {
 		register_post_type( $slug, $args );
 
 		// Register the post type templates.
-		require_once AGDPR_DIR_PATH . 'src/class-posttemplates.php';
+		require_once ALSAF4_DIR_PATH . 'src/class-posttemplates.php';
 		$post_template = new PostTemplates( $path, $slug, $this->single_file, $this->archive_file, $this->search_file );
 
 	}
