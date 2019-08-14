@@ -100,7 +100,7 @@ function study_abroad_filters() {
 
 	$output    = $sidebar_defaults['before'];
 	$query     = asa_get_posts( array( 'fields' => 'ids' ) );
-	$tax_slugs = get_object_taxonomies('study-abroad');
+	$tax_slugs = get_object_taxonomies( 'study-abroad' );
 	$post_ids  = $query->posts;
 	$tax_terms = array();
 
@@ -110,8 +110,8 @@ function study_abroad_filters() {
 
 	}
 
-	foreach ($tax_slugs as $slug) {
-		$tax_terms[$slug] = get_terms(
+	foreach ( $tax_slugs as $slug ) {
+		$tax_terms[ $slug ] = get_terms(
 			array(
 				'taxonomy'   => $slug,
 				'object_ids' => $post_ids,
@@ -122,11 +122,11 @@ function study_abroad_filters() {
 	// Taxonomy search bar output.
 	$checkbox = '<li class="item grid-x"><input class="cell shrink %s-%s" type="checkbox" id="dept_%s" value="%s-%s"><label class="cell auto" for="dept_%s">%s</label></li>';
 	$output  .= '<ul id="study-abroad-filters" class="reset">';
-	foreach ($tax_terms as $key => $value) {
-		$meta = get_taxonomy($key);
+	foreach ( $tax_terms as $key => $value ) {
+		$meta = get_taxonomy( $key );
 
-		$output  .= "<li><h3>{$meta->label}</h3>";
-		$output  .= '<ul>';
+		$output .= "<li><h3>{$meta->label}</h3>";
+		$output .= '<ul>';
 
 		foreach ( $value as $key2 => $value2 ) {
 			$output .= sprintf(
@@ -195,7 +195,7 @@ function study_abroad_content() {
 
 	$output     = '<div class="grid-container full"><div class="programs grid-x">';
 	$programs   = asa_get_posts();
-	$taxonomies = get_object_taxonomies('study-abroad');
+	$taxonomies = get_object_taxonomies( 'study-abroad' );
 
 	if ( empty( $programs->posts ) ) {
 
