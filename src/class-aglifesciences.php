@@ -44,6 +44,9 @@ class Aglifesciences {
 		// Require classes.
 		$this->require_classes();
 
+		// Register page templates.
+		$this->register_templates();
+
 		add_action( 'init', array( $this, 'init' ) );
 
 	}
@@ -57,6 +60,20 @@ class Aglifesciences {
 	public function init() {
 
 		$this->register_post_types();
+
+	}
+
+	/**
+	 * Initialize page templates
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
+	private function register_templates() {
+
+		require_once ALSAF4_DIR_PATH . '/src/class-pagetemplate.php';
+		$search = new \Aglifesciences\PageTemplate( ALSAF4_TEMPLATE_PATH, 'study-abroad-search.php', 'Study Abroad Search' );
+		$search->register();
 
 	}
 
