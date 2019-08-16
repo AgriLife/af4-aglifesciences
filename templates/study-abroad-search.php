@@ -69,12 +69,13 @@ function asa_get_posts( $args = array() ) {
 function study_abroad_filters() {
 
 	$id               = 'study-abroad-sidebar-search';
+	$button_mobile    = '<div data-sticky-container><div class="study-abroad-toggle title-bar-navigation show-for-small-only" data-sticky data-top-anchor="search-sidebar:top" data-btm-anchor="search-sidebar:bottom" data-margin-top="0"><button class="menu-icon" type="button" data-toggle="search-sidebar" data-toggle-focus="search-sidebar" aria-controls="search-sidebar"></button><div>Filters</div></div></div>';
 	$sidebar_defaults = apply_filters(
 		'genesis_widget_area_defaults',
 		array(
 			'before'              => genesis_markup(
 				array(
-					'open'    => '<aside class="study-abroad-search-sidebar widget-area cell small-12 medium-3">' . genesis_sidebar_title( $id ) . '<h2>Filter Programs<a href="#" class="reset-search">Reset</a></h2>',
+					'open'    => '<aside id="search-sidebar" class="study-abroad-search-sidebar hide-for-small-only widget-area cell small-12 medium-3" data-toggler=".hide-for-small-only" aria-expanded="false" data-sticky-container><div class="wrap sticky" data-sticky data-anchor="genesis-content" data-margin-top="9">' . genesis_sidebar_title( $id ) . '<h2>Filter Programs<a href="#" class="reset-search">Reset</a></h2>',
 					'context' => 'widget-area-wrap',
 					'echo'    => false,
 					'params'  => array(
@@ -84,7 +85,7 @@ function study_abroad_filters() {
 			),
 			'after'               => genesis_markup(
 				array(
-					'close'   => '</aside>',
+					'close'   => '</div></aside>',
 					'context' => 'widget-area-wrap',
 					'echo'    => false,
 				)
@@ -98,7 +99,7 @@ function study_abroad_filters() {
 		array()
 	);
 
-	$output    = $sidebar_defaults['before'];
+	$output    = '';
 	$query     = asa_get_posts( array( 'fields' => 'ids' ) );
 	$tax_slugs = get_object_taxonomies( 'study-abroad' );
 	$post_ids  = $query->posts;
@@ -109,6 +110,8 @@ function study_abroad_filters() {
 		return;
 
 	}
+
+	$output .= $sidebar_defaults['before'];
 
 	foreach ( $tax_slugs as $slug ) {
 		$tax_terms[ $slug ] = get_terms(
@@ -150,30 +153,46 @@ function study_abroad_filters() {
 	echo wp_kses(
 		$output,
 		array(
-			'aside' => array(
-				'class' => array(),
+			'button' => array(
+				'class'             => array(),
+				'type'              => array(),
+				'data-toggle'       => array(),
+				'data-toggle-focus' => array(),
+				'aria-controls'     => array(),
 			),
-			'ul'    => array(
+			'aside'  => array(
+				'id'                    => array(),
+				'class'                 => array(),
+				'data-toggler'          => array(),
+				'aria-expanded'         => array(),
+				'data-sticky-container' => array(),
+			),
+			'ul'     => array(
 				'id'    => array(),
 				'class' => array(),
 			),
-			'li'    => array(
+			'li'     => array(
 				'class' => array(),
 			),
-			'a'     => array(
+			'a'      => array(
 				'href'  => array(),
 				'class' => array(),
 			),
-			'div'   => array(
-				'class' => array(),
+			'div'    => array(
+				'class'           => array(),
+				'data-sticky'     => array(),
+				'data-margin-top' => array(),
+				'data-anchor'     => array(),
+				'data-top-anchor' => array(),
+				'data-btm-anchor' => array(),
 			),
-			'h2'    => array(),
-			'h3'    => array(),
-			'label' => array(
+			'h2'     => array(),
+			'h3'     => array(),
+			'label'  => array(
 				'class' => array(),
 				'for'   => array(),
 			),
-			'input' => array(
+			'input'  => array(
 				'class'    => array(),
 				'onchange' => array(),
 				'type'     => array(),

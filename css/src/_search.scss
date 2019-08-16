@@ -17,6 +17,12 @@ h1 {
 	}
 }
 
+#search-sidebar .sticky.is-stuck {
+	bottom: 0 !important; // sass-lint:disable-line no-important
+	overflow: auto;
+	z-index: 2;
+}
+
 .reset-search {
 	float: right;
 	display: inline-block;
@@ -35,7 +41,8 @@ h1 {
 
 #study-abroad-filters {
 	hyphens: auto;
-	margin-bottom: $grid-margin-gutters;
+	padding-bottom: $grid-margin-gutters / 2;
+	margin-bottom: 0;
 
 	input {
 		margin: 1px .5rem 0;
