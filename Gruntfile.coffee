@@ -4,9 +4,10 @@ module.exports = (grunt) ->
     pkg: @file.readJSON('package.json')
     watch:
       files: [
-        'css/src/**/*.scss'
+        'css/src/**/*.scss',
+        'js/src/**/*.coffee'
       ]
-      tasks: ['sasslint', 'sass:dev']
+      tasks: ['develop']
     postcss:
       pkg:
         options:
