@@ -69,13 +69,13 @@ function asa_get_posts( $args = array() ) {
 function study_abroad_filters() {
 
 	$id               = 'study-abroad-sidebar-search';
-	$button_mobile    = '<div data-sticky-container><div class="study-abroad-toggle title-bar-navigation show-for-small-only" data-sticky data-top-anchor="search-sidebar:top" data-btm-anchor="search-sidebar:bottom" data-margin-top="0"><button class="menu-icon" type="button" data-toggle="search-sidebar" data-toggle-focus="search-sidebar" aria-controls="search-sidebar"></button><div>Filters</div></div></div>';
+	$button_mobile    = '<a class="study-abroad-toggle title-bar-navigation show-for-small-only" data-toggle="filter-wrap" data-toggle-focus="filter-wrap" aria-controls="filter-wrap"><div class="menu-icon"></div><div>Filters</div></a>';
 	$sidebar_defaults = apply_filters(
 		'genesis_widget_area_defaults',
 		array(
 			'before'              => genesis_markup(
 				array(
-					'open'    => '<aside id="search-sidebar" class="study-abroad-search-sidebar hide-for-small-only widget-area cell small-12 medium-3" data-toggler=".hide-for-small-only" aria-expanded="false" data-sticky-container><div class="wrap sticky" data-sticky data-anchor="genesis-content" data-margin-top="9">' . genesis_sidebar_title( $id ) . '<h2>Filter Programs<a href="#" class="reset-search">Reset</a></h2>',
+					'open'    => '<aside id="search-sidebar" class="study-abroad-search-sidebar widget-area cell small-12 medium-3" data-sticky-container><div class="wrap sticky" data-sticky data-anchor="genesis-content" data-margin-top="10">' . $button_mobile . '<div id="filter-wrap" class="invisible-for-small-only" data-toggler=".invisible-for-small-only" aria-expanded="false">' . genesis_sidebar_title( $id ) . '<h2>Filter Programs<a href="#" class="reset-search">Reset</a></h2>',
 					'context' => 'widget-area-wrap',
 					'echo'    => false,
 					'params'  => array(
@@ -85,7 +85,7 @@ function study_abroad_filters() {
 			),
 			'after'               => genesis_markup(
 				array(
-					'close'   => '</div></aside>',
+					'close'   => '</div></div></aside>',
 					'context' => 'widget-area-wrap',
 					'echo'    => false,
 				)
@@ -163,8 +163,6 @@ function study_abroad_filters() {
 			'aside'  => array(
 				'id'                    => array(),
 				'class'                 => array(),
-				'data-toggler'          => array(),
-				'aria-expanded'         => array(),
 				'data-sticky-container' => array(),
 			),
 			'ul'     => array(
@@ -175,16 +173,23 @@ function study_abroad_filters() {
 				'class' => array(),
 			),
 			'a'      => array(
-				'href'  => array(),
-				'class' => array(),
+				'href'              => array(),
+				'class'             => array(),
+				'data-toggle'       => array(),
+				'data-toggle-focus' => array(),
+				'aria-controls'     => array(),
 			),
 			'div'    => array(
+				'id'              => array(),
 				'class'           => array(),
 				'data-sticky'     => array(),
+				'data-sticky-on'  => array(),
 				'data-margin-top' => array(),
 				'data-anchor'     => array(),
 				'data-top-anchor' => array(),
 				'data-btm-anchor' => array(),
+				'data-toggler'    => array(),
+				'aria-expanded'   => array(),
 			),
 			'h2'     => array(),
 			'h3'     => array(),
