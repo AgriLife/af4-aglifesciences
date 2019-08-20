@@ -21,9 +21,6 @@
       $activePrograms.fadeIn()
       $programs.not selected
         .fadeOut()
-    if typeof e isnt 'undefined' and Foundation.MediaQuery.atLeast 'medium'
-      $('#search-sidebar .sticky').foundation('_destroy')
-      filters = new Foundation.Sticky( $('#search-sidebar > .wrap') )
   $reset = (e) ->
     e.preventDefault();
     $inputs = $ '#study-abroad-filters input'
@@ -36,30 +33,31 @@
   $('.reset-search').on 'click', $reset
 
   # Sticky search filters for mobile
-  if Foundation.MediaQuery.is 'small only'
-    $('.study-abroad-search-sidebar > .sticky').removeClass('is-at-bottom')
-    buttonHeight = $('.study-abroad-toggle').outerHeight()
-    $('.study-abroad-search-sidebar #filter-wrap').css('top', buttonHeight + 'px')
-    # Set bounds of filter box to allow scrolling
-    $wrap = $('.study-abroad-search-sidebar #filter-wrap')
-    $filters = $wrap.find('#study-abroad-filters')
-    $filters.css('top', ($filters.offset().top - $wrap.offset().top + 16) + 'px')
-    # Custom sticky script for mobile
-    $(window).scroll (e) ->
-      scroll = $(window).scrollTop()
-      navheight = $('.site-header').height()
-      sidebar = $('.study-abroad-search-sidebar > .sticky').removeClass('is-at-bottom')
-      if scroll > navheight
-        if sidebar.hasClass('is-stuck') is false
-          sidebar.addClass('is-stuck').removeClass('is-anchored').css('top', (navheight + 16) + 'px')
-      else
-        if sidebar.hasClass('is-stuck') is true
-          sidebar.removeClass('is-stuck').addClass('is-anchored').css('top', 0)
-      # Fix issue where top position is set to a ridiculously high value on page load
-      if parseInt(sidebar.css('top')) > 200
-        if sidebar.hasClass('is-stuck')
-          sidebar.css('top', (navheight + 16) + 'px')
-        else
-          sidebar.css('top', '0')
+  # if Foundation.MediaQuery.is 'small only'
+  #   $sidebar = $ '.study-abroad-search-sidebar'
+  #   $sidebar.find('> .wrap').removeClass('is-at-bottom').addClass('sticky')
+  #   buttonHeight = $('.study-abroad-toggle').outerHeight()
+  #   $sidebar.find('#filter-wrap').css('top', buttonHeight + 'px')
+  #   # Set bounds of filter box to allow scrolling
+  #   $wrap = $sidebar.find('#filter-wrap')
+  #   $filters = $wrap.find('#study-abroad-filters')
+  #   $filters.css('top', ($filters.offset().top - $wrap.offset().top + 16) + 'px')
+  #   # Custom sticky script for mobile
+  #   $(window).scroll (e) ->
+  #     scroll = $(window).scrollTop()
+  #     navheight = $('.site-header').height()
+  #     sidebar = $('.study-abroad-search-sidebar > .sticky').removeClass('is-at-bottom')
+  #     if scroll > navheight
+  #       if sidebar.hasClass('is-stuck') is false
+  #         sidebar.addClass('is-stuck').removeClass('is-anchored').css('top', (navheight + 16) + 'px')
+  #     else
+  #       if sidebar.hasClass('is-stuck') is true
+  #         sidebar.removeClass('is-stuck').addClass('is-anchored').css('top', 0)
+  #     # Fix issue where top position is set to a ridiculously high value on page load
+  #     if parseInt(sidebar.css('top')) > 200
+  #       if sidebar.hasClass('is-stuck')
+  #         sidebar.css('top', (navheight + 16) + 'px')
+  #       else
+  #         sidebar.css('top', '0')
   return
 ) jQuery

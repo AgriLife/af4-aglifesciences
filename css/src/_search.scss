@@ -19,6 +19,10 @@ h1 {
 	display: inline-block;
 	text-decoration: none;
 
+	.no-js & {
+		display: none;
+	}
+
 	&:hover,
 	&:active,
 	&:focus {
@@ -50,6 +54,10 @@ h1 {
 
 #search-sidebar {
 
+	.no-js & {
+		display: none;
+	}
+
 	#filter-wrap {
 		background-color: $whiter;
 		padding-top: $grid-padding-gutters / 2;
@@ -62,7 +70,7 @@ h1 {
 	}
 
 	@include breakpoint(small only) {
-		max-height: 65px;
+		// max-height: 65px;
 
 		.invisible-for-small-only {
 			visibility: hidden;

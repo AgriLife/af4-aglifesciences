@@ -75,7 +75,7 @@ function study_abroad_filters() {
 		array(
 			'before'              => genesis_markup(
 				array(
-					'open'    => '<aside id="search-sidebar" class="study-abroad-search-sidebar widget-area cell small-12 medium-3" data-sticky-container><div class="wrap sticky" data-sticky data-anchor="genesis-content" data-margin-top="10">' . $button_mobile . '<div id="filter-wrap" class="invisible-for-small-only" data-toggler=".invisible-for-small-only" aria-expanded="false">' . genesis_sidebar_title( $id ) . '<h2>Filter Programs<a href="#" class="reset-search">Reset</a></h2>',
+					'open'    => '<aside id="search-sidebar" class="study-abroad-search-sidebar widget-area cell small-12 medium-3"><div class="wrap">' . $button_mobile . '<div id="filter-wrap" class="hide-for-small-only" data-toggler=".hide-for-small-only" aria-expanded="false">' . genesis_sidebar_title( $id ) . '<h2>Filter Programs<a href="#" class="reset-search">Reset</a></h2>',
 					'context' => 'widget-area-wrap',
 					'echo'    => false,
 					'params'  => array(
