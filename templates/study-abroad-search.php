@@ -232,7 +232,7 @@ function study_abroad_content() {
 		$terms      = wp_get_post_terms( $value->ID, $taxonomies );
 		$fields     = get_fields($value->ID) ? get_fields($value->ID) : array();
 		$class      = [ 'program', 'cell', 'medium-3', 'small-6' ];
-		$thumb      = get_the_post_thumbnail( $value->ID, 'medium' );
+		$thumb      = get_the_post_thumbnail( $value->ID, 'medium_cropped' );
 		$tag        = 'div';
 		$link       = array_key_exists('link', $fields) ? $fields['link'] : false;
 		$link_open  = $link ? "<a href=\"{$link}\">" : '';

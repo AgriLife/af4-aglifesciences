@@ -224,16 +224,8 @@ h1 {
 			position: relative;
 			height: 100%;
 
-			&:hover::before {
-				content: "";
-				display: block;
-				width: 4px;
-				position: absolute;
-				left: 0;
-				top: 0;
-				bottom: 0;
-				background-color: $nav-yellow;
-				z-index: 1;
+			&:hover div {
+				border-left: 4px solid $nav-yellow;
 			}
 		}
 
