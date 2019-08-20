@@ -211,6 +211,7 @@ h1 {
 .programs {
 	margin-left: 0 - $grid-padding-gutters / 4;
 	margin-right: 0 - $grid-padding-gutters / 4;
+	font-family: $tungsten;
 
 	.program {
 		@include xy-gutters( $grid-padding-gutters / 2, padding );
@@ -218,26 +219,42 @@ h1 {
 		margin-bottom: $grid-padding-gutters / 2;
 		overflow: hidden;
 
+		a {
+			display: inline-block;
+			position: relative;
+			height: 100%;
+
+			&:hover::before {
+				content: "";
+				display: block;
+				width: 4px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				background-color: $nav-yellow;
+				z-index: 1;
+			}
+		}
+
 		div {
 			position: absolute;
+			left: 0;
+			right: 0;
 			bottom: 0;
-			right: $grid-padding-gutters / 4;
-			left: $grid-padding-gutters / 4;
 			top: 50%;
 			background-color: rgba($dark-blue, .8);
-			padding: $grid-padding-gutters / 3 $grid-padding-gutters / 2;
+			padding: $grid-padding-gutters / 4 $grid-padding-gutters / 2;
 			color: $white;
-			text-align: right;
 			line-height: 1.1;
-			font-size: 4vw;
-			font-weight: bold;
+			font-size: 3.8vw;
 
 			@include breakpoint(medium) {
-				font-size: 1.5vw;
+				font-size: 1.4vw;
 			}
 
 			@include breakpoint(xlarge) {
-				font-size: 19px;
+				font-size: 18px;
 			}
 
 			a {
@@ -245,12 +262,17 @@ h1 {
 			}
 		}
 
+		> div {
+			right: $grid-padding-gutters / 4;
+			left: $grid-padding-gutters / 4;
+		}
+
 		@include breakpoint(medium) {
 			@include breakpoint(900px down) {
-				@include xy-cell( 4, false, 0 );
+				@include xy-cell( 6, false, 0 );
 
 				div {
-					font-size: 2vw;
+					font-size: 3vw;
 				}
 			}
 		}
