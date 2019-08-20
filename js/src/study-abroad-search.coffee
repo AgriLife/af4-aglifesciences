@@ -35,6 +35,7 @@
   $('#study-abroad-filters input').on 'change', $update
   $('.reset-search').on 'click', $reset
 
+  # Sticky search filters for mobile
   if Foundation.MediaQuery.is 'small only'
     $('.study-abroad-search-sidebar > .sticky').removeClass('is-at-bottom')
     buttonHeight = $('.study-abroad-toggle').outerHeight()

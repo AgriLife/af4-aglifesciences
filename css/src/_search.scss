@@ -52,6 +52,13 @@ h1 {
 
 	#filter-wrap {
 		background-color: $whiter;
+		padding-top: $grid-padding-gutters / 2;
+	}
+
+	.is-stuck {
+		#filter-wrap {
+			padding: $grid-padding-gutters / 2;
+		}
 	}
 
 	@include breakpoint(small only) {
@@ -74,14 +81,13 @@ h1 {
 			bottom: $grid-padding-gutters / 2 !important; // sass-lint:disable-line no-important
 
 			#filter-wrap {
-				padding: $grid-padding-gutters / 2;
 				position: absolute;
 				bottom: 0;
 				width: 100%;
 			}
 
 			#study-abroad-filters {
-				overflow: scroll;
+				overflow-y: scroll;
 				position: absolute;
 				top: auto;
 				bottom: $grid-padding-gutters / 2;
@@ -92,10 +98,17 @@ h1 {
 	}
 
 	@include breakpoint(medium) {
-		.sticky.is-stuck {
-			bottom: 0 !important; // sass-lint:disable-line no-important
-			overflow: auto;
-			z-index: 2;
+		.is-stuck {
+			&.sticky {
+				bottom: $grid-padding-gutters / 2 !important; // sass-lint:disable-line no-important
+				overflow-y: scroll;
+				z-index: 2;
+			}
+		}
+
+		#filter-wrap,
+		.is-stuck #filter-wrap {
+			padding: 0;
 		}
 	}
 }
@@ -124,6 +137,7 @@ h1 {
 	hyphens: auto;
 	padding-bottom: $grid-margin-gutters / 2;
 	margin-bottom: 0;
+	clear: both;
 
 	input {
 		margin: 1px .5rem 0;
@@ -180,6 +194,10 @@ h1 {
 	&.accordion-menu .is-accordion-submenu-parent:not(.has-submenu-toggle) > a::after {
 		border-color: $maroon transparent transparent;
 	}
+
+	@include breakpoint(medium) {
+		padding-bottom: 0;
+	}
 }
 
 .programs {
@@ -228,5 +246,11 @@ h1 {
 				}
 			}
 		}
+	}
+}
+
+@include breakpoint(small only) {
+	#genesis-content .entry-content > .grid-container {
+		margin-top: $grid-padding-gutters / 2;
 	}
 }
