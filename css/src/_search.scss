@@ -219,17 +219,28 @@ h1 {
 		margin-bottom: $grid-padding-gutters / 2;
 		overflow: hidden;
 
+		@include breakpoint(medium) {
+			@include breakpoint(900px down) {
+				@include xy-cell( 6, false, 0 );
+			}
+		}
+
 		a {
-			display: inline-block;
+			display: block;
 			position: relative;
 			height: 100%;
 
-			&:hover div {
+			&:hover .title {
 				box-shadow: 4px 0 inset $nav-yellow;
 			}
 		}
 
-		div {
+		> div {
+			right: $grid-padding-gutters / 4;
+			left: $grid-padding-gutters / 4;
+		}
+
+		.title {
 			position: absolute;
 			left: 0;
 			right: 0;
@@ -243,6 +254,10 @@ h1 {
 
 			@include breakpoint(medium) {
 				font-size: 1.4vw;
+
+				@include breakpoint(900px down) {
+					font-size: 3vw;
+				}
 			}
 
 			@include breakpoint(xlarge) {
@@ -253,21 +268,6 @@ h1 {
 				text-decoration: none;
 			}
 		}
-
-		> div {
-			right: $grid-padding-gutters / 4;
-			left: $grid-padding-gutters / 4;
-		}
-
-		@include breakpoint(medium) {
-			@include breakpoint(900px down) {
-				@include xy-cell( 6, false, 0 );
-
-				div {
-					font-size: 3vw;
-				}
-			}
-		}
 	}
 }
 
@@ -275,4 +275,11 @@ h1 {
 	#genesis-content .entry-content > .grid-container {
 		margin-top: $grid-padding-gutters / 2;
 	}
+}
+
+.truncate {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }

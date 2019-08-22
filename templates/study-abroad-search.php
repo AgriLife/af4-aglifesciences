@@ -255,7 +255,7 @@ function study_abroad_content() {
 		$close = "{$link_close}</{$tag}>";
 
 		$output .= sprintf(
-			'%s%s<div>%s</div>%s',
+			'%s%s<div class="title"><div class="truncate">%s</div></div>%s',
 			$open,
 			$thumb,
 			$value->post_title,
