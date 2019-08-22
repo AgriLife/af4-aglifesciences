@@ -5,22 +5,42 @@
   $update = (e) ->
     $inputs = $ '#study-abroad-filters input'
     $activeInputs = $inputs.filter ':checked'
-    $programs = $ '.program'
+    $items = $ '.program'
     if $activeInputs.length is 0
       # Show all programs
-      $programs.filter ':hidden'
+      $items.filter ':hidden'
         .fadeIn()
+      $inputs.not ':enabled'
+        .removeAttr 'disabled'
     else
-      # Decide which programs to show.
+      # Decide which items to show.
       activeInputClasses = []
       $activeInputs.each ( index ) ->
         activeInputClasses.push '.' + this.value
-      selected = activeInputClasses.join ', '
-      $activePrograms = $programs.filter selected
-      # Show or hide programs.
-      $activePrograms.fadeIn()
-      $programs.not selected
+      selected = activeInputClasses.join ''
+      $activeItems = $items.filter selected
+      # Show or hide items.
+      $activeItems.fadeIn()
+      $items.not selected
         .fadeOut()
+      # Find which taxonomies are present in active degrees.
+      activeTaxonomies = []
+      taxonomies = /study-abroad-(department|region|term|program-type|classification)-\S+/g
+      $activeItems.each ->
+        matches = this.className.match taxonomies
+        j = 0
+        while j < matches.length
+          if matches[j] not in activeTaxonomies then activeTaxonomies.push '.' + matches[j]
+          j++
+      activeTaxonomies = activeTaxonomies.join ','
+      console.log activeTaxonomies
+      # Change enabled state of filters.
+      $inputs.filter activeTaxonomies
+        .not ':enabled'
+        .removeAttr 'disabled'
+      $inputs.not activeTaxonomies
+        .not ':disabled'
+        .attr 'disabled', true
   $reset = (e) ->
     e.preventDefault();
     $inputs = $ '#study-abroad-filters input'
