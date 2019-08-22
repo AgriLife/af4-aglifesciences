@@ -219,12 +219,6 @@ h1 {
 		margin-bottom: $grid-padding-gutters / 2;
 		overflow: hidden;
 
-		@include breakpoint(medium) {
-			@include breakpoint(900px down) {
-				@include xy-cell( 6, false, 0 );
-			}
-		}
-
 		a {
 			display: block;
 			position: relative;
@@ -247,25 +241,69 @@ h1 {
 			bottom: 0;
 			top: 50%;
 			background-color: rgba($dark-blue, .8);
-			padding: $grid-padding-gutters / 4 $grid-padding-gutters / 2;
+			padding: .38rem $grid-padding-gutters / 2;
 			color: $white;
-			line-height: 1.1;
+			line-height: 1.2;
 			font-size: 3.8vw;
 
-			@include breakpoint(medium) {
-				font-size: 1.4vw;
+			@include breakpoint(560px down) {
+				line-height: 1.15;
+			}
 
-				@include breakpoint(900px down) {
-					font-size: 3vw;
-				}
+			@include breakpoint(510px down) {
+				line-height: 1.1;
+			}
+
+			@include breakpoint(470px down) {
+				line-height: 1.06;
+			}
+
+			@include breakpoint(415px down) {
+				line-height: 1;
+			}
+
+			@include breakpoint(medium) {
+				font-size: 1.5vw;
+				line-height: 1.05;
+			}
+
+			@include breakpoint(709px down) {
+				line-height: 1.07;
+			}
+
+			@include breakpoint(787px down) {
+				line-height: 1.1;
+			}
+
+			@include breakpoint(1130px) {
+				line-height: 1.1;
 			}
 
 			@include breakpoint(xlarge) {
 				font-size: 18px;
 			}
 
+			img {
+				width: 100%;
+			}
+
 			a {
 				text-decoration: none;
+			}
+
+			.truncate {
+				height: 100%;
+			}
+		}
+
+		@include breakpoint(medium) {
+			@include breakpoint(900px down) {
+				@include xy-cell( 6, false, 0 );
+
+				.title {
+					font-size: 3vw;
+					line-height: 1.15;
+				}
 			}
 		}
 	}
