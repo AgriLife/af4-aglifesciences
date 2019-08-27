@@ -235,8 +235,8 @@ function study_abroad_content() {
 		$thumb      = get_the_post_thumbnail( $value->ID, 'medium_cropped' );
 		$tag        = 'div';
 		$link       = array_key_exists('link', $fields) ? $fields['link'] : false;
-		$link_open  = $link ? "<a href=\"{$link}\">" : '';
-		$link_close = $link ? '</a>' : '';
+		$link_open  = $link ? "<a href=\"{$link}\" class=\"wrap\">" : '<div class=\"wrap\">';
+		$link_close = $link ? '</a>' : '</div>';
 		foreach ( $terms as $term ) {
 			$class[] = "{$term->taxonomy}-{$term->slug}";
 		}

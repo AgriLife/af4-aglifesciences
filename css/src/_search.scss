@@ -219,7 +219,7 @@ h1 {
 		margin-bottom: $grid-padding-gutters / 2;
 		overflow: hidden;
 
-		a {
+		.wrap {
 			display: block;
 			position: relative;
 			height: 100%;
@@ -229,59 +229,20 @@ h1 {
 			}
 		}
 
-		> div {
-			right: $grid-padding-gutters / 4;
-			left: $grid-padding-gutters / 4;
-		}
-
 		.title {
+			/* truncate-wrap */
+			display: flex;
+			align-items: center;
+			font-size: 3.8vw;
+			/* END truncate-wrap */
 			position: absolute;
 			left: 0;
 			right: 0;
 			bottom: 0;
 			top: 50%;
 			background-color: rgba($dark-blue, .8);
-			padding: .38rem $grid-padding-gutters / 2;
+			padding: 0 $grid-padding-gutters / 2;
 			color: $white;
-			line-height: 1.2;
-			font-size: 3.8vw;
-
-			@include breakpoint(560px down) {
-				line-height: 1.15;
-			}
-
-			@include breakpoint(510px down) {
-				line-height: 1.1;
-			}
-
-			@include breakpoint(470px down) {
-				line-height: 1.06;
-			}
-
-			@include breakpoint(415px down) {
-				line-height: 1;
-			}
-
-			@include breakpoint(medium) {
-				font-size: 1.5vw;
-				line-height: 1.05;
-			}
-
-			@include breakpoint(709px down) {
-				line-height: 1.07;
-			}
-
-			@include breakpoint(787px down) {
-				line-height: 1.1;
-			}
-
-			@include breakpoint(1130px) {
-				line-height: 1.1;
-			}
-
-			@include breakpoint(xlarge) {
-				font-size: 18px;
-			}
 
 			img {
 				width: 100%;
@@ -292,17 +253,33 @@ h1 {
 			}
 
 			.truncate {
-				height: 100%;
+				display: -webkit-box; // sass-lint:disable-line no-vendor-prefixes
+				-webkit-line-clamp: 3; // sass-lint:disable-line no-vendor-prefixes
+				-webkit-box-orient: vertical; // sass-lint:disable-line no-vendor-prefixes
+				height: 3.6em;
+				line-height: 1.19em;
+				overflow: hidden;
 			}
 		}
 
 		@include breakpoint(medium) {
+			.title {
+				font-size: 1.125rem;
+			}
+
+			@include breakpoint(1215px down) {
+				@include xy-cell( 4, false, 0 );
+
+				.title {
+					font-size: 1.9vw;
+				}
+			}
+
 			@include breakpoint(900px down) {
 				@include xy-cell( 6, false, 0 );
 
 				.title {
 					font-size: 3vw;
-					line-height: 1.15;
 				}
 			}
 		}
@@ -313,11 +290,4 @@ h1 {
 	#genesis-content .entry-content > .grid-container {
 		margin-top: $grid-padding-gutters / 2;
 	}
-}
-
-.truncate {
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
 }
