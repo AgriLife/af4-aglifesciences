@@ -257,9 +257,21 @@ h1 {
 				display: -webkit-box; // sass-lint:disable-line no-vendor-prefixes
 				-webkit-line-clamp: 3; // sass-lint:disable-line no-vendor-prefixes
 				-webkit-box-orient: vertical; // sass-lint:disable-line no-vendor-prefixes
-				height: 3.6em;
-				line-height: 1.19em;
+				height: 3.5em;
+				line-height: 1.15em;
 				overflow: hidden;
+			}
+		}
+
+		@include breakpoint(460px down) {
+			@include xy-cell( 12, false, 0 );
+			margin: {
+				left: auto;
+				right: auto;
+			}
+
+			.title {
+				font-size: 1.5rem;
 			}
 		}
 
@@ -280,7 +292,7 @@ h1 {
 				@include xy-cell( 6, false, 0 );
 
 				.title {
-					font-size: 3vw;
+					font-size: 2.9vw;
 				}
 			}
 		}
