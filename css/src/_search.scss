@@ -215,6 +215,7 @@ h1 {
 
 	.program {
 		@include xy-gutters( $grid-padding-gutters / 2, padding );
+		max-width: 19.75rem;
 		position: relative;
 		margin-bottom: $grid-padding-gutters / 2;
 		overflow: hidden;
