@@ -116,11 +116,11 @@ class Aglifesciences {
 
 		/* Add Study Abroad Post Type */
 		// Add taxonomies.
-		new \Aglifesciences\Taxonomy( 'Department', 'study-abroad-department', 'study-abroad', array( 'rewrite' => array( 'slug' => 'department-sa' ) ) );
-		new \Aglifesciences\Taxonomy( 'Region', 'study-abroad-region', 'study-abroad', array( 'rewrite' => array( 'slug' => 'region' ) ) );
-		new \Aglifesciences\Taxonomy( 'Term', 'study-abroad-term', 'study-abroad', array( 'rewrite' => array( 'slug' => 'term-sa' ) ) );
-		new \Aglifesciences\Taxonomy( 'Program Type', 'study-abroad-program-type', 'study-abroad', array( 'rewrite' => array( 'slug' => 'type' ) ) );
-		new \Aglifesciences\Taxonomy( 'Classification', 'study-abroad-classification', 'study-abroad', array( 'rewrite' => array( 'slug' => 'classification' ) ) );
+		new \Aglifesciences\Taxonomy( 'Department', 'study-abroad-department', 'study-abroad', array( 'public' => false ) );
+		new \Aglifesciences\Taxonomy( 'Region', 'study-abroad-region', 'study-abroad', array( 'public' => false ) );
+		new \Aglifesciences\Taxonomy( 'Term', 'study-abroad-term', 'study-abroad', array( 'public' => false ) );
+		new \Aglifesciences\Taxonomy( 'Program Type', 'study-abroad-program-type', 'study-abroad', array( 'public' => false ) );
+		new \Aglifesciences\Taxonomy( 'Classification', 'study-abroad-classification', 'study-abroad', array( 'public' => false ) );
 
 		// Add custom post type.
 		new \Aglifesciences\PostType(
@@ -133,13 +133,24 @@ class Aglifesciences {
 			'af4-aglifesciences',
 			array(),
 			'dashicons-portfolio',
-			array( 'title', 'editor', 'thumbnail' )
+			array( 'title', 'editor', 'thumbnail' ),
+			array(),
+			array(
+				'public' => false,
+				'publicly_queryable' => true,
+				'show_ui' => true,
+				'exclude_from_search' => false,
+				'show_in_nav_menus' => false,
+				'has_archive' => true,
+				'rewrite' => false,
+				'show_in_rest' => true,
+			)
 		);
 
 		/* Add Student Organization Post Type */
 		// We share the department taxonomy with other custom post types.
 		if ( ! taxonomy_exists('department') ) {
-			new \Aglifesciences\Taxonomy( 'Department', 'department' );
+			new \Aglifesciences\Taxonomy( 'Department', 'department', null, array( 'public' => false ) );
 		}
 
 		// Add custom post type.
