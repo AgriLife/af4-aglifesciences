@@ -76,7 +76,7 @@ class Taxonomy {
 	 * @param string $template The template file path for the taxonomy archive page.
 	 * @return void
 	 */
-	public function __construct( $name, $slug, $post_slug, $user_args = array(), $meta = array(), $template = '' ) {
+	public function __construct( $name, $slug, $post_slug = null, $user_args = array(), $meta = array(), $template = '' ) {
 
 		$this->slug          = $slug;
 		$this->post_slug     = $post_slug;

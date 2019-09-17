@@ -139,7 +139,7 @@ class Aglifesciences {
 		/* Add Student Organization Post Type */
 		// We share the department taxonomy with other custom post types.
 		if ( ! taxonomy_exists('department') ) {
-			new \Aglifesciences\Taxonomy( 'Department', 'department', null );
+			new \Aglifesciences\Taxonomy( 'Department', 'department' );
 		}
 
 		// Add custom post type.
