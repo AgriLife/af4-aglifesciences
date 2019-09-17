@@ -132,8 +132,8 @@ class Aglifesciences {
 			'af4-aglifesciences',
 			array(),
 			'dashicons-portfolio',
-			array( 'title', 'editor', 'thumbnail', 'genesis-seo', 'genesis-scripts' ),
-			array( 'single' => 'single-study-abroad.php' )
+			array( 'title', 'editor', 'thumbnail' )
+		);
 		);
 
 	}
