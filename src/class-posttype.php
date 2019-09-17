@@ -77,7 +77,8 @@ class PostType {
 		),
 		$icon = 'dashicons-portfolio',
 		$supports = array( 'title' ),
-		$templates = array()
+		$templates = array(),
+		$user_args = array()
 	) {
 
 		$this->post_type = $slug;
