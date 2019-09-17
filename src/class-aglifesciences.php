@@ -122,6 +122,7 @@ class Aglifesciences {
 		new \Aglifesciences\Taxonomy( 'Program Type', 'study-abroad-program-type', 'study-abroad', array( 'rewrite' => array( 'slug' => 'type' ) ) );
 		new \Aglifesciences\Taxonomy( 'Classification', 'study-abroad-classification', 'study-abroad', array( 'rewrite' => array( 'slug' => 'classification' ) ) );
 
+		// Add custom post type.
 		new \Aglifesciences\PostType(
 			array(
 				'singular' => 'Study Abroad',
@@ -134,6 +135,25 @@ class Aglifesciences {
 			'dashicons-portfolio',
 			array( 'title', 'editor', 'thumbnail' )
 		);
+
+		/* Add Student Organization Post Type */
+		// We share the department taxonomy with other custom post types.
+		if ( ! taxonomy_exists('department') ) {
+			new \Aglifesciences\Taxonomy( 'Department', 'department', null );
+		}
+
+		// Add custom post type.
+		new \Aglifesciences\PostType(
+			array(
+				'singular' => 'Student Organization',
+				'plural'   => 'Student Organizations',
+			),
+			ALSAF4_TEMPLATE_PATH,
+			'student-organization',
+			'af4-aglifesciences',
+			array( 'department' ),
+			'dashicons-portfolio',
+			array( 'title', 'editor', 'thumbnail' )
 		);
 
 	}
