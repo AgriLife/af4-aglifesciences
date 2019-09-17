@@ -44,6 +44,12 @@ class Aglifesciences {
 		// Require classes.
 		$this->require_classes();
 
+		// Load css and js assets.
+		new \Aglifesciences\Assets();
+
+		// Add custom fields.
+		new \Aglifesciences\CustomFields();
+
 		// Register page templates.
 		$this->register_templates();
 
@@ -71,7 +77,6 @@ class Aglifesciences {
 	 */
 	private function register_templates() {
 
-		require_once ALSAF4_DIR_PATH . '/src/class-pagetemplate.php';
 		$search = new \Aglifesciences\PageTemplate( ALSAF4_TEMPLATE_PATH, 'study-abroad-search.php', 'Study Abroad Search' );
 		$search->register();
 
@@ -85,13 +90,19 @@ class Aglifesciences {
 	 */
 	private function require_classes() {
 
-		/* Set up asset files */
+		// Set up asset files.
 		require_once ALSAF4_DIR_PATH . 'src/class-assets.php';
-		$als_assets = new \Aglifesciences\Assets();
+
+		// Add page templates.
+		require_once ALSAF4_DIR_PATH . '/src/class-pagetemplate.php';
 
 		// Add page template custom fields.
 		require_once ALSAF4_DIR_PATH . 'src/class-customfields.php';
-		new \Aglifesciences\CustomFields();
+
+		// Add post type classes.
+		require_once ALSAF4_DIR_PATH . 'src/class-posttype.php';
+		require_once ALSAF4_DIR_PATH . 'src/class-posttemplates.php';
+		require_once ALSAF4_DIR_PATH . 'src/class-taxonomy.php';
 
 	}
 
@@ -103,17 +114,13 @@ class Aglifesciences {
 	 */
 	public static function register_post_types() {
 
-		/* Add taxonomies */
-		require_once ALSAF4_DIR_PATH . 'src/class-taxonomy.php';
 		new \Aglifesciences\Taxonomy( 'Department', 'study-abroad-department', 'study-abroad', array( 'rewrite' => array( 'slug' => 'department' ) ) );
+		// Add taxonomies.
 		new \Aglifesciences\Taxonomy( 'Region', 'study-abroad-region', 'study-abroad', array( 'rewrite' => array( 'slug' => 'region' ) ) );
 		new \Aglifesciences\Taxonomy( 'Term', 'study-abroad-term', 'study-abroad', array( 'rewrite' => array( 'slug' => 'term' ) ) );
 		new \Aglifesciences\Taxonomy( 'Program Type', 'study-abroad-program-type', 'study-abroad', array( 'rewrite' => array( 'slug' => 'type' ) ) );
 		new \Aglifesciences\Taxonomy( 'Classification', 'study-abroad-classification', 'study-abroad', array( 'rewrite' => array( 'slug' => 'classification' ) ) );
 
-		/* Add custom post type */
-		require_once ALSAF4_DIR_PATH . 'src/class-posttype.php';
-		require_once ALSAF4_DIR_PATH . 'src/class-posttemplates.php';
 		new \Aglifesciences\PostType(
 			array(
 				'singular' => 'Study Abroad',
