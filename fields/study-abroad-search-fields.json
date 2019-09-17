@@ -1,12 +1,12 @@
 [
     {
         "key": "group_5d27406558858",
-        "title": "Degree Program Search",
+        "title": "Study Abroad Search",
         "fields": [
             {
                 "key": "field_5d27406cdd6a3",
                 "label": "",
-                "name": "degree_program_search",
+                "name": "study_abroad_search",
                 "type": "group",
                 "instructions": "",
                 "required": 0,
@@ -20,8 +20,8 @@
                 "sub_fields": [
                     {
                         "key": "field_5d274083dd6a4",
-                        "label": "Degree Level",
-                        "name": "degree_level",
+                        "label": "Student Level",
+                        "name": "student_level",
                         "type": "taxonomy",
                         "instructions": "",
                         "required": 0,
@@ -31,8 +31,8 @@
                             "class": "",
                             "id": ""
                         },
-                        "taxonomy": "level",
-                        "field_type": "select",
+                        "taxonomy": "study-abroad-classification",
+                        "field_type": "multi_select",
                         "allow_null": 0,
                         "add_term": 0,
                         "save_terms": 0,
@@ -48,7 +48,7 @@
                 {
                     "param": "page_template",
                     "operator": "==",
-                    "value": "degree-search.php"
+                    "value": "study-abroad-search.php"
                 }
             ]
         ],

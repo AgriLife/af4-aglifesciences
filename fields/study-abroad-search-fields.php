@@ -32,8 +32,8 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 					'sub_fields'        => array(
 						array(
 							'key'               => 'field_5d274083dd6a4',
-							'label'             => 'Degree Level',
-							'name'              => 'degree_level',
+							'label'             => 'Student Level',
+							'name'              => 'student_level',
 							'type'              => 'taxonomy',
 							'instructions'      => '',
 							'required'          => 0,
@@ -43,8 +43,8 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 								'class' => '',
 								'id'    => '',
 							),
-							'taxonomy'          => 'level',
-							'field_type'        => 'select',
+							'taxonomy'          => 'study-abroad-classification',
+							'field_type'        => 'multi_select',
 							'allow_null'        => 0,
 							'add_term'          => 0,
 							'save_terms'        => 0,

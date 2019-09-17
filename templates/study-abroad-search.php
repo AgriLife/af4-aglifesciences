@@ -41,17 +41,18 @@ function asa_get_posts( $args = array() ) {
 		$args
 	);
 	$fields = get_field( 'study_abroad_search' );
-	$level  = $fields['degree_level'];
+	$levels = $fields['student_level'];
 
-	if ( $level ) {
+	if ( 0 < count( $levels ) ) {
+		$args['tax_query'] = array(); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+	}
 
-		$level             = $level->slug;
-		$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-			array(
-				'taxonomy' => 'level',
-				'field'    => 'slug',
-				'terms'    => $level,
-			),
+	foreach ( $levels as $level ) {
+
+		$args['tax_query'][] = array(
+			'taxonomy' => 'study-abroad-classification',
+			'field'    => 'slug',
+			'terms'    => $level->slug,
 		);
 
 	}
@@ -121,6 +122,9 @@ function study_abroad_filters() {
 			)
 		);
 	}
+
+	// Ensure filters for Student Level reflect selections on this page's Taxonomy custom field.
+	$tax_terms['study-abroad-classification'] = get_field( 'study_abroad_search' )['student_level'];
 
 	// Taxonomy search bar output.
 	$checkbox = '<li class="item grid-x"><input class="cell shrink %s-%s" type="checkbox" id="dept_%s" value="%s-%s"><label class="cell auto" for="dept_%s">%s</label></li>';
