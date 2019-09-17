@@ -114,10 +114,11 @@ class Aglifesciences {
 	 */
 	public static function register_post_types() {
 
-		new \Aglifesciences\Taxonomy( 'Department', 'study-abroad-department', 'study-abroad', array( 'rewrite' => array( 'slug' => 'department' ) ) );
+		/* Add Study Abroad Post Type */
 		// Add taxonomies.
+		new \Aglifesciences\Taxonomy( 'Department', 'study-abroad-department', 'study-abroad', array( 'rewrite' => array( 'slug' => 'department-sa' ) ) );
 		new \Aglifesciences\Taxonomy( 'Region', 'study-abroad-region', 'study-abroad', array( 'rewrite' => array( 'slug' => 'region' ) ) );
-		new \Aglifesciences\Taxonomy( 'Term', 'study-abroad-term', 'study-abroad', array( 'rewrite' => array( 'slug' => 'term' ) ) );
+		new \Aglifesciences\Taxonomy( 'Term', 'study-abroad-term', 'study-abroad', array( 'rewrite' => array( 'slug' => 'term-sa' ) ) );
 		new \Aglifesciences\Taxonomy( 'Program Type', 'study-abroad-program-type', 'study-abroad', array( 'rewrite' => array( 'slug' => 'type' ) ) );
 		new \Aglifesciences\Taxonomy( 'Classification', 'study-abroad-classification', 'study-abroad', array( 'rewrite' => array( 'slug' => 'classification' ) ) );
 
