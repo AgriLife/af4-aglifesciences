@@ -1,60 +1,6 @@
 module.exports = (grunt) ->
-  sass = require 'node-sass'
   @initConfig
     pkg: @file.readJSON('package.json')
-    watch:
-      files: [
-        'css/src/**/*.scss',
-        'js/src/**/*.coffee'
-      ]
-      tasks: ['develop']
-    postcss:
-      pkg:
-        options:
-          processors: [
-            require('autoprefixer')({browsers: ['last 2 versions','ie > 9']})
-          ]
-          failOnError: true
-        files:
-          'css/aglifesciences.css': 'css/aglifesciences.css'
-      dev:
-        options:
-          map: true
-          processors: [
-            require('autoprefixer')({browsers: ['last 2 versions','ie > 9']})
-          ]
-          failOnError: true
-        files:
-          'css/aglifesciences.css': 'css/aglifesciences.css'
-    sass:
-      pkg:
-        options:
-          implementation: sass
-          noSourceMap: true
-          outputStyle: 'compressed'
-          precision: 2
-          includePaths: ['node_modules/foundation-sites/scss']
-        files:
-          'css/aglifesciences.css': 'css/src/aglifesciences.scss'
-      dev:
-        options:
-          implementation: sass
-          sourceMap: true
-          outputStyle: 'nested'
-          precision: 2
-          includePaths: ['node_modules/foundation-sites/scss']
-        files:
-          'css/aglifesciences.css': 'css/src/aglifesciences.scss'
-    sasslint:
-      options:
-        configFile: '.sass-lint.yml'
-      target: ['scss/**/*.s+(a|c)ss']
-    coffee:
-      compile:
-        options:
-          bare: true
-        files:
-          'js/study-abroad-search.js': 'js/src/study-abroad-search.coffee'
     compress:
       main:
         options:
@@ -66,15 +12,8 @@ module.exports = (grunt) ->
           {src: ['readme.md']},
         ]
 
-  @loadNpmTasks 'grunt-contrib-watch'
   @loadNpmTasks 'grunt-contrib-compress'
-  @loadNpmTasks 'grunt-contrib-coffee'
-  @loadNpmTasks 'grunt-sass-lint'
-  @loadNpmTasks 'grunt-sass'
-  @loadNpmTasks 'grunt-postcss'
 
-  @registerTask 'default', ['sass:pkg', 'postcss:pkg', 'coffee']
-  @registerTask 'develop', ['sasslint', 'sass:dev', 'postcss:dev', 'coffee']
   @registerTask 'release', ['compress', 'makerelease']
   @registerTask 'makerelease', 'Set release branch for use in the release task', ->
     done = @async()

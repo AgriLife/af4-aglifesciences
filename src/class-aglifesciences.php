@@ -44,9 +44,6 @@ class Aglifesciences {
 		// Require classes.
 		$this->require_classes();
 
-		// Load css and js assets.
-		new \Aglifesciences\Assets();
-
 		// Add custom fields.
 		new \Aglifesciences\CustomFields();
 
@@ -90,9 +87,6 @@ class Aglifesciences {
 	 */
 	private function require_classes() {
 
-		// Set up asset files.
-		require_once ALSAF4_DIR_PATH . 'src/class-assets.php';
-
 		// Add page templates.
 		require_once ALSAF4_DIR_PATH . '/src/class-pagetemplate.php';
 
@@ -114,7 +108,7 @@ class Aglifesciences {
 	 */
 	public static function register_post_types() {
 
-		/* Add Study Abroad Post Type */
+		// Add Study Abroad Post Type.
 		// Add taxonomies.
 		new \Aglifesciences\Taxonomy( 'Department', 'study-abroad-department', 'study-abroad', array( 'public' => false ) );
 		new \Aglifesciences\Taxonomy( 'Region', 'study-abroad-region', 'study-abroad', array( 'public' => false ) );
@@ -136,20 +130,20 @@ class Aglifesciences {
 			array( 'title', 'editor', 'thumbnail' ),
 			array(),
 			array(
-				'public' => false,
-				'publicly_queryable' => true,
-				'show_ui' => true,
+				'public'              => false,
+				'publicly_queryable'  => true,
+				'show_ui'             => true,
 				'exclude_from_search' => false,
-				'show_in_nav_menus' => false,
-				'has_archive' => true,
-				'rewrite' => false,
-				'show_in_rest' => true,
+				'show_in_nav_menus'   => false,
+				'has_archive'         => true,
+				'rewrite'             => false,
+				'show_in_rest'        => true,
 			)
 		);
 
-		/* Add Student Organization Post Type */
+		// Add Student Organization Post Type.
 		// We share the department taxonomy with other custom post types.
-		if ( ! taxonomy_exists('department') ) {
+		if ( ! taxonomy_exists( 'department' ) ) {
 			new \Aglifesciences\Taxonomy( 'Department', 'department', null, array( 'public' => false ) );
 		}
 

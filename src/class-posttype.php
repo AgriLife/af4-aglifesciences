@@ -61,6 +61,7 @@ class PostType {
 	 * @param  array  $supports   The attributes this post type supports. Accepts arguments found in
 	 *                            WordPress core register_post_type function.
 	 * @param  array  $templates  The template file names.
+	 * @param  array  $user_args  Additional user arguments which override all others for the function register_post_type.
 	 * @return void
 	 */
 	public function __construct(

@@ -20,8 +20,21 @@ add_action( 'genesis_before_content_sidebar_wrap', 'genesis_entry_header_markup_
 add_action( 'genesis_before_content_sidebar_wrap', 'genesis_do_post_title', 11 );
 
 // Page content.
+add_action( 'wp_enqueue_scripts', 'study_abroad_search_scripts', 12 );
 add_action( 'genesis_before_content', 'study_abroad_filters' );
 add_action( 'genesis_entry_content', 'study_abroad_content' );
+
+/**
+ * Enqueues scripts
+ *
+ * @since 0.3.0
+ * @return void
+ */
+function study_abroad_search_scripts() {
+
+	wp_enqueue_script( 'agrilife-post-tile-search' );
+
+}
 
 /**
  * Get degree program posts based on a custom field taxonomy.

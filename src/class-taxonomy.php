@@ -120,7 +120,7 @@ class Taxonomy {
 		// Create taxonomy custom fields.
 		// Ensure meta is an array of one or more arrays.
 		if ( ! empty( $meta ) ) {
-			if ( ! is_array( $meta[0] ) ) {
+			if ( ! array_key_exists( 0, $meta ) ) {
 				$this->meta_boxes[] = $meta;
 			} else {
 				foreach ( $meta as $key => $value ) {
@@ -174,20 +174,23 @@ class Taxonomy {
 		$t_id = $tag->term_id;
 
 		foreach ( $this->meta_boxes as $key => $meta ) {
-			// retrieve the existing value(s) for this meta field. This returns an array.
+			// Retrieve the existing value(s) for this meta field. This returns an array.
 			$slug      = $meta['slug'];
-			$term_meta = get_option( "taxonomy_{$t_id}_{$slug}" );
+			$term_meta = get_term_meta( $t_id, "term_meta_{$slug}" );
 
 			?><tr class="form-field term-<?php echo esc_attr( $slug ); ?>-wrap">
 				<th scope="row" valign="top"><label for="term_meta_<?php echo esc_attr( $slug ); ?>"><?php echo esc_html( $meta['name'] ); ?></label></th>
 				<td>
 					<?php
 
-					$value = $term_meta ? stripslashes( $term_meta ) : '';
-					$value = html_entity_decode( $value );
+					// Make sure the form request comes from WordPress.
+					wp_nonce_field( basename( __FILE__ ), "term_meta_{$slug}_nonce" );
 
+					// Output the form field.
 					switch ( $meta['type'] ) {
 						case 'full':
+							$value = $term_meta ? stripslashes( $term_meta ) : '';
+							$value = html_entity_decode( $value );
 							wp_editor(
 								$value,
 								'term_meta_' . $slug,
@@ -199,18 +202,65 @@ class Taxonomy {
 							break;
 
 						case 'link':
-							$output = "<input type=\"url\" name=\"term_meta_{$slug}\" id=\"term_meta_{$slug}\" value=\"{$value}\" placeholder=\"https://example.com\" pattern=\"http[s]?://.*\">";
-							echo esc_html( $output );
+							$value  = $term_meta ? stripslashes( $term_meta ) : '';
+							$value  = html_entity_decode( $value );
+							$output = "<input type=\"url\" name=\"term_meta_{$slug}\" id=\"term_meta_{$slug}\" value=\"{$value}\" placeholder=\"https://example.com\" pattern=\"http[s]?://.*\"><p class=\"description\"" . esc_html_e( 'Enter a value for this field', 'agrilife-degree-programs' ) . '</p>';
+							echo wp_kses(
+								$output,
+								array(
+									'input' => array(
+										'type'        => array(),
+										'name'        => array(),
+										'id'          => array(),
+										'value'       => array(),
+										'placeholder' => array(),
+										'pattern'     => array(),
+									),
+									'p'     => array(
+										'class' => array(),
+									),
+								)
+							);
+							break;
+
+						case 'checkbox':
+							$value  = ! empty( $term_meta ) && 'on' === $term_meta[0] ? 'checked' : '';
+							$output = "<input type=\"checkbox\" name=\"term_meta_{$slug}\" id=\"term_meta_{$slug}\" {$value}>";
+							echo wp_kses(
+								$output,
+								array(
+									'input' => array(
+										'type'    => array(),
+										'name'    => array(),
+										'id'      => array(),
+										'checked' => array(),
+									),
+								)
+							);
 							break;
 
 						default:
-							$output = "<input type=\"text\" name=\"term_meta_{$slug}\" id=\"term_meta_{$slug}\" value=\"{$value}\">";
-							echo esc_html( $output );
+							$value  = $term_meta ? stripslashes( $term_meta ) : '';
+							$value  = html_entity_decode( $value );
+							$output = "<input type=\"text\" name=\"term_meta_{$slug}\" id=\"term_meta_{$slug}\" value=\"{$value}\"><p class=\"description\"" . esc_html_e( 'Enter a value for this field', 'agrilife-degree-programs' ) . '</p>';
+							echo wp_kses(
+								$output,
+								array(
+									'input' => array(
+										'type'  => array(),
+										'name'  => array(),
+										'id'    => array(),
+										'value' => array(),
+									),
+									'p'     => array(
+										'class' => array(),
+									),
+								)
+							);
 							break;
 					}
 
 					?>
-					<p class="description"><?php esc_html_e( 'Enter a value for this field', 'af4-aglifesciences' ); ?></p>
 				</td>
 			</tr>
 			<?php
@@ -229,22 +279,32 @@ class Taxonomy {
 		foreach ( $this->meta_boxes as $key => $meta ) {
 
 			$slug = $meta['slug'];
-			$key  = "term_meta_$slug";
+			$key  = sanitize_key( "term_meta_$slug" );
+			$nkey = isset( $_POST[ $key . '_nonce' ] ) ? sanitize_key( $_POST[ $key . '_nonce' ] ) : null;
 
 			if (
-				isset( $_POST[ $key ], $_POST[ $key . '_nonce' ] )
-				&& wp_verify_nonce( sanitize_key( $_POST[ $key . '_nonce' ] ) )
+				! isset( $nkey )
+				|| ! wp_verify_nonce( $nkey, basename( __FILE__ ) )
 			) {
+				continue;
+			}
+
+			if ( 'checkbox' === $meta['type'] ) {
+
+				$value = isset( $_POST[ $key ] ) ? sanitize_key( wp_unslash( $_POST[ $key ] ) ) : null;
+
+			} else {
 
 				$post_meta = sanitize_text_field( wp_unslash( $_POST[ $key ] ) );
 				$t_id      = $term_id;
 				$value     = wp_unslash( $post_meta );
 				$value     = sanitize_text_field( htmlentities( $value ) );
 
-				// Save the option array.
-				update_option( "taxonomy_{$t_id}_{$slug}", $value );
-
 			}
+
+			// Save the option array.
+			update_term_meta( $term_id, $key, $value );
+
 		}
 
 	}

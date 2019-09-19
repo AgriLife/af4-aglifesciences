@@ -1,6 +1,6 @@
 {
   "name": "af4-aglifesciences",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "A plugin for The College of Agriculture and Life Sciences' main site on the AgriFlex4 theme.",
   "main": "af4-aglifesciences.php",
   "scripts": {
@@ -16,24 +16,12 @@
     "email": "first-call@tamu.edu"
   },
   "dependencies": {
-    "autoprefixer": "^9.2.1",
-    "foundation-sites": "^6.4.3",
     "grunt": "^1.0.3",
-    "grunt-contrib-coffee": "^2.1.0",
-    "grunt-contrib-compress": "^1.4.3",
-    "grunt-postcss": "^0.9.0",
-    "grunt-sass": "^3.1.0",
-    "jquery": "^3.3.1",
-    "node-sass": "^4.12.0",
-    "underscore": "^1.9.1",
-    "what-input": "^5.1.2"
+    "grunt-contrib-compress": "^1.4.3"
   },
-  "devDependencies": {
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-sass-lint": "^0.2.4"
-  },
+  "devDependencies": {},
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   },
   "repository": {
     "type": "git",
