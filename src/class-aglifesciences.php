@@ -74,8 +74,11 @@ class Aglifesciences {
 	 */
 	private function register_templates() {
 
-		$search = new \Aglifesciences\PageTemplate( ALSAF4_TEMPLATE_PATH, 'study-abroad-search.php', 'Study Abroad Search' );
-		$search->register();
+		$search_study_abroad = new \Aglifesciences\PageTemplate( ALSAF4_TEMPLATE_PATH, 'study-abroad-search.php', 'Study Abroad Search' );
+		$search_study_abroad->register();
+
+		$search_student_orgs = new \Aglifesciences\PageTemplate( ALSAF4_TEMPLATE_PATH, 'student-org-search.php', 'Student Organization Search' );
+		$search_student_orgs->register();
 
 	}
 
@@ -158,7 +161,18 @@ class Aglifesciences {
 			'af4-aglifesciences',
 			array( 'department' ),
 			'dashicons-portfolio',
-			array( 'title', 'editor', 'thumbnail' )
+			array( 'title', 'editor', 'thumbnail' ),
+			array(),
+			array(
+				'public'              => false,
+				'publicly_queryable'  => true,
+				'show_ui'             => true,
+				'exclude_from_search' => false,
+				'show_in_nav_menus'   => false,
+				'has_archive'         => true,
+				'rewrite'             => false,
+				'show_in_rest'        => true,
+			)
 		);
 
 	}
