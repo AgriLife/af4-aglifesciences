@@ -133,7 +133,7 @@ class Aglifesciences {
 			array( 'title', 'editor', 'thumbnail' ),
 			array(),
 			array(
-				'public'              => false,
+				'public'              => true,
 				'publicly_queryable'  => true,
 				'show_ui'             => true,
 				'exclude_from_search' => false,
@@ -164,7 +164,7 @@ class Aglifesciences {
 			array( 'title', 'editor', 'thumbnail' ),
 			array(),
 			array(
-				'public'              => false,
+				'public'              => true,
 				'publicly_queryable'  => true,
 				'show_ui'             => true,
 				'exclude_from_search' => false,
