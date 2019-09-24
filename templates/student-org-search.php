@@ -54,6 +54,8 @@ function aso_get_posts( $args = array() ) {
 		array(
 			'post_type'      => $post_slug,
 			'posts_per_page' => -1,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
 		),
 		$args
 	);
