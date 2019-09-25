@@ -28,6 +28,7 @@ class CustomFields {
 
 		// Add page template custom fields.
 		if ( class_exists( 'acf' ) ) {
+			require_once ALSAF4_DIR_PATH . 'fields/home-fields.php';
 			require_once ALSAF4_DIR_PATH . 'fields/study-abroad-fields.php';
 			require_once ALSAF4_DIR_PATH . 'fields/study-abroad-search-fields.php';
 		}

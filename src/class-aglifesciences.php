@@ -74,6 +74,9 @@ class Aglifesciences {
 	 */
 	private function register_templates() {
 
+		$home = new \Aglifesciences\PageTemplate( ALSAF4_TEMPLATE_PATH, 'home.php', 'Home' );
+		$home->register();
+
 		$search_study_abroad = new \Aglifesciences\PageTemplate( ALSAF4_TEMPLATE_PATH, 'study-abroad-search.php', 'Study Abroad Search' );
 		$search_study_abroad->register();
 

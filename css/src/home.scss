@@ -1,0 +1,218 @@
+@charset "utf-8";
+
+@import "foundation";
+@import "settings";
+
+.arrow-right {
+	&::after {
+		content: "";
+		display: inline-block;
+		width: 1.1rem;
+		height: 1.1rem;
+		margin-left: .3em;
+		border: 4px solid $nav-yellow {
+			width: 0 4px 4px 0;
+		}
+		position: relative;
+		top: -0.2rem;
+		transform: rotate(-45deg);
+	}
+}
+
+p {
+	margin-bottom: .5rem;
+}
+
+h3,
+.h3 {
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.invert {
+	color: $whiter;
+	background-color: $gray-darker;
+
+	&.events {
+		background-color: $maroon-alt-2;
+	}
+
+	a,
+	a:active,
+	a:hover {
+		color: $whiter;
+		text-decoration: none;
+	}
+}
+
+.button {
+	color: $whiter;
+	background-color: $maroon;
+	border-left: 2px solid $button-red-highlight;
+	text-transform: uppercase;
+	font-weight: 400;
+	padding: .5em .75em;
+	margin: .5em .75em 0 0;
+
+	&:hover {
+		color: $whiter;
+		background-color: darken($maroon, 10%);
+	}
+}
+
+.research .excerpt {
+	color: $whiter;
+	background-color: darken($maroon, 10%);
+	border-left: 2px solid $button-red-highlight;
+	text-transform: uppercase;
+	font-weight: 400;
+	padding: .9em 1.15em;
+
+	p {
+		margin-bottom: 0;
+	}
+}
+
+.about,
+.student-section {
+	background-color: $gray-lighterest; // We should implement a color pallet management system.
+}
+
+.about h2 {
+	font-weight: 500;
+}
+
+.entry-content {
+	.padding-y {
+		padding-top: 3.5rem;
+		padding-bottom: 3.5rem;
+	}
+
+	.cell.center-y {
+		display: flex;
+		align-items: center;
+	}
+
+	.grid-padding-x > .cell {
+		padding-left: 1.75rem;
+		padding-right: 1.75rem;
+	}
+
+	.grid-padding-x > .cell.about {
+		padding-left: 3.5rem;
+		padding-right: 3.5rem;
+	}
+
+	.action-items,
+	.events,
+	.student-section {
+		&.grid-container {
+			padding-left: 2.75rem;
+			padding-right: 2.75rem;
+		}
+	}
+
+	.action-items {
+		.padding-y {
+			padding-top: 2rem;
+			padding-bottom: 2.5rem;
+		}
+	}
+
+	.grid-padding-x > .cell.research {
+		padding: 0;
+	}
+
+	.research {
+		> a {
+			display: block;
+			width: 100%;
+			position: relative;
+		}
+
+		img {
+			width: 100%;
+		}
+
+		h3 {
+			color: $whiter;
+			position: absolute;
+			top: 0;
+			left: 25%;
+			text: {
+				transform: none;
+				shadow: 0 0 4px $black, 0 0 4px $black, 0 0 2px $black;
+			}
+			line-height: .8;
+
+			.first-word {
+				font: 400 .6em $opensans;
+				vertical-align: baseline;
+				text-transform: uppercase;
+				display: block;
+				position: relative;
+				left: -80%;
+
+				&::after {
+					content: "";
+					background-color: $button-red-highlight;
+					display: inline-block;
+					height: 7rem;
+					width: 2px;
+					box-shadow: 0 0 4px $black;
+					margin-left: .5em;
+				}
+			}
+		}
+
+		.excerpt {
+			position: absolute;
+			right: 0;
+			bottom: 4rem;
+			width: 45%;
+		}
+	}
+
+	.events {
+		.padding-y {
+			padding-top: 2.5rem;
+		}
+
+		h2 {
+			text-transform: none;
+			text-align: center;
+			margin-bottom: 2.5rem;
+		}
+
+		h3 {
+			margin-top: .5rem;
+		}
+	}
+
+	.student-section {
+		.arrow-wrap {
+			position: relative;
+
+			.arrow-right {
+				position: absolute;
+				right: .8rem;
+				top: 5.9rem;
+				background-color: $nav-yellow;
+				width: 2rem;
+				height: 2.5rem;
+
+				&::after {
+					border-color: $black;
+					top: 50%;
+					left: calc(50% - .55rem);
+					transform: translate(-50%, -50%) rotate(-45deg);
+				}
+			}
+		}
+
+		.button {
+			transform: scale(1.2);
+			transform-origin: 0 0;
+		}
+	}
+}
