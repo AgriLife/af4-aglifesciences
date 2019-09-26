@@ -153,6 +153,19 @@ class Aglifesciences {
 			new \Aglifesciences\Taxonomy( 'Department', 'department', null, array( 'public' => false ) );
 		}
 
+		// We share the level taxonomy with other custom post types.
+		if ( ! taxonomy_exists( 'level' ) ) {
+			new \DegreePrograms\Taxonomy(
+				'Level',
+				'level',
+				null,
+				array(
+					'hierarchical' => true,
+					'public'       => false,
+				)
+			);
+		}
+
 		// Add custom post type.
 		new \Aglifesciences\PostType(
 			array(
@@ -162,7 +175,7 @@ class Aglifesciences {
 			ALSAF4_TEMPLATE_PATH,
 			'student-organization',
 			'af4-aglifesciences',
-			array( 'department' ),
+			array( 'department', 'level' ),
 			'dashicons-portfolio',
 			array( 'title', 'editor', 'thumbnail' ),
 			array(),

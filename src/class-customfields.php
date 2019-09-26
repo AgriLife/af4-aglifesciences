@@ -31,6 +31,7 @@ class CustomFields {
 			require_once ALSAF4_DIR_PATH . 'fields/home-fields.php';
 			require_once ALSAF4_DIR_PATH . 'fields/study-abroad-fields.php';
 			require_once ALSAF4_DIR_PATH . 'fields/study-abroad-search-fields.php';
+			require_once ALSAF4_DIR_PATH . 'fields/student-organization-fields.php';
 		}
 
 	}
