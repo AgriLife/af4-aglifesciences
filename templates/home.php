@@ -135,7 +135,7 @@ function home_content() {
 	);
 
 	// Livewhale.
-	$feed_json    = wp_remote_get( 'https://calendar.tamu.edu/live/json/events/group/College%20of%20Agriculture%20and%20Life%20Sciences' );
+	$feed_json    = wp_remote_get( 'https://calendar.tamu.edu/live/json/events/group/College%20of%20Agriculture%20and%20Life%20Sciences/only_starred/true/' );
 	$feed_array   = json_decode( $feed_json['body'], true );
 	$l_events     = array_slice( $feed_array, 0, 4 ); // Choose number of events.
 	$l_event_list = '';
