@@ -55,7 +55,7 @@ function home_content() {
 	$output_template = array(
 		'image'           => '<div class="top">%s</div>',
 		'action_items'    => '<div class="action-items grid-container invert"><div class="grid-x grid-padding-x padding-y">%s</div></div>',
-		'about_research'  => '<div class="about-research grid-container"><div class="grid-x grid-padding-x"><div class="about cell center-y padding-y medium-6 small-12"><div class="center-y-wrap"><h2>%s</h2>%s<a class="button" href="%s" target="%s">%s</a></div></div><div class="research cell medium-6 small-12"><a href="%s" title="%s"><h3 class="h2"><span class="first-word">Research</span> Stories</h3><div class="excerpt">%s</div>%s</a></div></div></div>',
+		'about_research'  => '<div class="about-research grid-container"><div class="grid-x grid-padding-x"><div class="about cell center-y padding-y medium-6 small-12"><div class="center-y-wrap"><h2>%s</h2>%s<a class="button" href="%s" target="%s">%s</a></div></div><div class="research cell medium-6 small-12"><a href="%s"><h3 class="h2"><span class="first-word">Research</span> Stories</h3><div class="excerpt">%s</div>%s</a></div></div></div>',
 		'events'          => '<div class="events grid-container invert"><div class="grid-x grid-padding-x padding-y"><h2 class="cell medium-12 small-12">Events</h2>%s</div></div>',
 		'livewhale'       => '<div class="livewhale grid-container invert"><div class="grid-x"><div class="cell auto grid-container"><div class="grid-x grid-padding-x">%s</div></div><div class="cell shrink"><a class="h3 arrow-right" href="#">All Events</a></div></div></div>',
 		'student_section' => '<div class="student-section grid-container"><div class="grid-x grid-padding-x padding-y"><div class="image arrow-wrap cell medium-4 small-4"><img src="%s" alt="%s"><div class="arrow-right"></div></div><div class="text cell center-y medium-8 small-8"><div class="center-y-wrap"><h2>%s</h2><div class="statement">%s</div><a class="button" href="%s" target="%s">%s</a></div></div></div></div>',
@@ -106,10 +106,9 @@ function home_content() {
 		$fields['about']['link']['url'],
 		$fields['about']['link']['target'],
 		$fields['about']['link']['title'],
-		get_post_permalink( $fields['research_stories']['post'] ),
-		$fields['research_stories']['post']->post_title,
+		$fields['research_stories']['link']['url'],
 		$fields['research_stories']['description'],
-		get_the_post_thumbnail( $fields['research_stories']['post'], 'large' )
+		wp_get_attachment_image( $fields['research_stories']['image'], 'large' )
 	);
 
 	// Events.
