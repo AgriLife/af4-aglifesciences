@@ -22,7 +22,7 @@
                         "key": "field_5d8a6b651e190",
                         "label": "Top",
                         "name": "top",
-                        "type": "image",
+                        "type": "wysiwyg",
                         "instructions": "",
                         "required": 0,
                         "conditional_logic": 0,
@@ -31,16 +31,11 @@
                             "class": "",
                             "id": ""
                         },
-                        "return_format": "array",
-                        "preview_size": "large",
-                        "library": "all",
-                        "min_width": 1200,
-                        "min_height": "",
-                        "min_size": "",
-                        "max_width": "",
-                        "max_height": "",
-                        "max_size": "",
-                        "mime_types": "jpg"
+                        "default_value": "",
+                        "tabs": "all",
+                        "toolbar": "basic",
+                        "media_upload": 1,
+                        "delay": 0
                     },
                     {
                         "key": "field_5d8a6bea1e191",

@@ -53,7 +53,7 @@ function home_content() {
 	$fields          = get_field( 'home' );
 	$output          = '';
 	$output_template = array(
-		'image'           => '<div class="image"><img src="%s" alt="%s"></div>',
+		'image'           => '<div class="top">%s</div>',
 		'action_items'    => '<div class="action-items grid-container invert"><div class="grid-x grid-padding-x padding-y">%s</div></div>',
 		'about_research'  => '<div class="about-research grid-container"><div class="grid-x grid-padding-x"><div class="about cell center-y padding-y medium-6 small-12"><div class="center-y-wrap"><h2>%s</h2>%s<a class="button" href="%s" target="%s">%s</a></div></div><div class="research cell medium-6 small-12"><a href="%s" title="%s"><h3 class="h2"><span class="first-word">Research</span> Stories</h3><div class="excerpt">%s</div>%s</a></div></div></div>',
 		'events'          => '<div class="events grid-container invert"><div class="grid-x grid-padding-x padding-y"><h2 class="cell medium-12 small-12">Events</h2>%s</div></div>',
@@ -64,8 +64,7 @@ function home_content() {
 	// Top image.
 	$output .= sprintf(
 		$output_template['image'],
-		$fields['top']['url'],
-		$fields['top']['alt']
+		$fields['top']
 	);
 
 	// Action items.
@@ -137,7 +136,7 @@ function home_content() {
 	// Livewhale.
 	$feed_json    = wp_remote_get( 'https://calendar.tamu.edu/live/json/events/group/College%20of%20Agriculture%20and%20Life%20Sciences/only_starred/true/' );
 	$feed_array   = json_decode( $feed_json['body'], true );
-	$l_events     = array_slice( $feed_array, 0, 4 ); // Choose number of events.
+	$l_events     = array_slice( $feed_array, 0, 3 ); // Choose number of events.
 	$l_event_list = '';
 
 	foreach ( $l_events as $event ) {
@@ -163,8 +162,8 @@ function home_content() {
 			$date_day,
 			$title,
 			$url,
-			wp_trim_words( $title, 2 ),
-			wp_trim_words( $location, 2 )
+			$title,
+			$location
 		);
 
 	}

@@ -64,6 +64,12 @@ h3,
 	}
 }
 
+.top {
+	p {
+		margin-bottom: 0;
+	}
+}
+
 .research .excerpt {
 	color: $whiter;
 	background-color: darken($maroon, 10%);
