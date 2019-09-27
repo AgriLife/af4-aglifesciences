@@ -267,10 +267,11 @@ h3,
 				top: .1rem;
 				bottom: .1rem;
 			}
+		}
 
-			strong {
-				text-transform: uppercase;
-			}
+		.event-title {
+			font-weight: bold;
+			text-transform: uppercase;
 		}
 
 		.event {
