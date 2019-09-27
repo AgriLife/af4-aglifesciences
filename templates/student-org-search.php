@@ -92,7 +92,7 @@ function student_organization_filters() {
 
 	$post_slug           = 'student-organization';
 	$taxonomies          = get_object_taxonomies( $post_slug );
-	$excluded_taxonomies = array(); // Not used right now.
+	$excluded_taxonomies = array( 'level' );
 	$id                  = 'student-organization-sidebar-search';
 	$button_mobile       = '<a class="post-tile-search-toggle ' . $post_slug . '-toggle title-bar-navigation show-for-small-only" data-toggle="filter-wrap" data-toggle-focus="filter-wrap" aria-controls="filter-wrap"><div class="menu-icon"></div><div>Filters</div></a>';
 	$taxonomy_list       = implode( ',', $taxonomies );
