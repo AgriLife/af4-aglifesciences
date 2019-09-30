@@ -3,6 +3,90 @@
 @import "foundation";
 @import "settings";
 
+$home-cell-padding: 1.75rem;
+$block-vertical-padding: 2.5rem;
+
+@mixin home-cell-padding( $padding ){
+	.entry-content {
+		.padding-y {
+			padding: {
+				top: $home-cell-padding * 1.5;
+				bottom: $home-cell-padding * 1.5;
+			}
+		}
+
+		.grid-padding-x > .cell {
+			padding-left: $padding;
+			padding-right: $padding;
+		}
+
+		> .alignfull {
+			> .grid-container {
+				padding: {
+					left: $padding * 2;
+					right: $padding * 2;
+				}
+
+				&:not(.full) > .grid-padding-x {
+					margin: {
+						left: -$padding;
+						right: -$padding;
+					}
+				}
+			}
+
+			&.about-research > .grid-container:not(.full) > .grid-padding-x {
+				margin: {
+					left: -$padding * 2;
+					right: -$padding * 2;
+				}
+			}
+		}
+
+		.grid-padding-x > .cell.about {
+			padding: $padding * 1.75;
+		}
+
+		.events {
+			h2 {
+				margin-bottom: $padding + .75rem;
+			}
+		}
+
+		.livewhale {
+			.events-cell > .grid-padding-x {
+				margin: {
+					left: -$padding / 2;
+					right: -$padding;
+				}
+			}
+
+			.event,
+			.events-all {
+				padding: {
+					top: $padding / 2;
+					bottom: $padding / 2;
+				}
+			}
+
+			.event {
+				padding: {
+					left: $padding / 2;
+					right: $padding / 2;
+				}
+			}
+		}
+	}
+}
+
+@include home-cell-padding( 1.75rem );
+
+@include breakpoint(medium) {
+	@include breakpoint(915px down) {
+		@include home-cell-padding( .75rem );
+	}
+}
+
 .site-inner > .grid-container {
 	padding: {
 		top: 0;
@@ -77,19 +161,6 @@ h3,
 	}
 }
 
-.research .excerpt {
-	color: $whiter;
-	background-color: darken($maroon, 10%);
-	border-left: 2px solid $button-red-highlight;
-	text-transform: uppercase;
-	font-weight: 400;
-	padding: .9em 1.15em;
-
-	p {
-		margin-bottom: 0;
-	}
-}
-
 .about-research,
 .student-section {
 	background-color: $gray-lighterest; // We should implement a color pallet management system.
@@ -100,30 +171,15 @@ h3,
 }
 
 .entry-content {
-	.padding-y {
-		padding-top: 3.5rem;
-		padding-bottom: 3.5rem;
-	}
-
 	.cell.center-y {
 		display: flex;
 		align-items: center;
-	}
-
-	.grid-padding-x > .cell {
-		padding-left: 1.75rem;
-		padding-right: 1.75rem;
 	}
 
 	> .alignfull {
 		> .grid-container {
 			max-width: 71rem;
 		}
-	}
-
-	.grid-padding-x > .cell.about {
-		padding-left: 3.5rem;
-		padding-right: 3.5rem;
 	}
 
 	.action-items,
@@ -136,11 +192,6 @@ h3,
 	}
 
 	.action-items {
-		.padding-y {
-			padding-top: 2rem;
-			padding-bottom: 2.5rem;
-		}
-
 		p {
 			font-weight: 500;
 		}
@@ -190,25 +241,73 @@ h3,
 					margin-left: .5em;
 				}
 			}
+
+			@include breakpoint(medium) {
+				@include breakpoint(975px down) {
+					left: 33%;
+
+					.first-word {
+						&::after {
+							height: 5rem;
+						}
+					}
+				}
+			}
 		}
 
 		.excerpt {
-			position: absolute;
-			right: 0;
-			bottom: 4rem;
-			width: 45%;
+			$dark-maroon: darken($maroon, 10%);
+			color: $whiter;
+			background-color: $dark-maroon;
+			border-left: 2px solid $button-red-highlight;
+			text-transform: uppercase;
+			font-weight: 400;
+			padding: .9em 1.15em;
+
+			@include breakpoint(medium) {
+				position: absolute;
+				right: 0;
+				top: 37%;
+				width: 45%;
+
+				@include breakpoint(975px down) {
+					top: auto;
+					bottom: 0;
+					width: 60%;
+					max-height: 10rem;
+					overflow: auto;
+					padding-bottom: .4rem;
+
+					p {
+						padding-bottom: .5rem;
+					}
+				}
+
+				@include breakpoint(905px down) {
+					width: 75%;
+					overflow-y: auto;
+				}
+
+				@include breakpoint(815px down) {
+					position: relative;
+					width: 100%;
+					margin-top: -3rem;
+					top: auto;
+					bottom: auto;
+					right: auto;
+				}
+			}
+
+			p {
+				margin-bottom: 0;
+			}
 		}
 	}
 
 	.events {
-		.padding-y {
-			padding-top: 2.5rem;
-		}
-
 		h2 {
 			text-transform: none;
 			text-align: center;
-			margin-bottom: 2.5rem;
 		}
 
 		h3 {
@@ -217,32 +316,8 @@ h3,
 	}
 
 	.livewhale {
-		padding: 1.25rem 3.5rem;
-
 		p {
 			hyphens: auto;
-		}
-
-		> .grid-container > .grid-x {
-			margin: 0;
-
-			> .cell:first-child {
-				padding: 0;
-
-				> .grid-x {
-					margin: {
-						left: -1.75rem;
-						right: 0;
-					}
-				}
-
-				& + .cell {
-					padding: {
-						top: 1.75rem;
-						bottom: 1.75rem;
-					}
-				}
-			}
 		}
 
 		.h2,
@@ -284,11 +359,7 @@ h3,
 		}
 
 		.event {
-			min-width: 215px;
-			padding: {
-				top: 1.75rem;
-				bottom: 1.75rem;
-			}
+			min-width: 300px;
 
 			.cell {
 				padding: {

@@ -55,9 +55,9 @@ function home_content() {
 	$output_template = array(
 		'image'           => '<div class="alignfull top">%s</div>',
 		'action_items'    => '<div class="alignfull invert action-items"><div class="grid-container"><div class="grid-x grid-padding-x padding-y">%s</div></div></div>',
-		'about_research'  => '<div class="alignfull about-research"><div class="grid-container"><div class="grid-x grid-padding-x"><div class="about cell center-y padding-y medium-6 small-12"><div class="center-y-wrap"><h2>%s</h2>%s<a class="button" href="%s" target="%s">%s</a></div></div><div class="research cell medium-6 small-12"><a href="%s"><h3 class="h2"><span class="first-word">Research</span> Stories</h3><div class="excerpt">%s</div>%s</a></div></div></div></div>',
+		'about_research'  => '<div class="alignfull about-research"><div class="grid-container"><div class="grid-x grid-padding-x"><div class="about cell center-y padding-y medium-6 small-12"><div class="center-y-wrap"><h2>%s</h2>%s<a class="button" href="%s" target="%s">%s</a></div></div><div class="research cell medium-6 small-12"><a href="%s"><h3 class="h2"><span class="first-word">Research</span> Stories</h3>%s<div class="excerpt">%s</div></a></div></div></div></div>',
 		'events'          => '<div class="alignfull events invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><h2 class="cell medium-12 small-12">Events</h2>%s</div></div></div>',
-		'livewhale'       => '<div class="alignfull livewhale invert"><div class="grid-container"><div class="grid-x"><div class="cell auto grid-container"><div class="grid-x grid-padding-x">%s</div></div><div class="cell shrink"><a class="h3 arrow-right" href="#">All Events</a></div></div></div></div>',
+		'livewhale'       => '<div class="alignfull livewhale invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="events-cell cell medium-auto small-12 grid-container"><div class="grid-x grid-padding-x">%s</div></div><div class="events-all cell medium-shrink small-12"><a class="h3 arrow-right" href="#">All Events</a></div></div></div></div>',
 		'student_section' => '<div class="alignfull student-section"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="image arrow-wrap cell medium-4 small-4"><img src="%s" alt="%s"><div class="arrow-right"></div></div><div class="text cell center-y medium-8 small-8"><div class="center-y-wrap"><h2>%s</h2><div class="statement">%s</div><a class="button" href="%s" target="%s">%s</a></div></div></div></div></div>',
 	);
 
@@ -107,8 +107,8 @@ function home_content() {
 		$fields['about']['link']['target'],
 		$fields['about']['link']['title'],
 		$fields['research_stories']['link']['url'],
-		$fields['research_stories']['description'],
-		wp_get_attachment_image( $fields['research_stories']['image'], 'large' )
+		wp_get_attachment_image( $fields['research_stories']['image'], 'large' ),
+		$fields['research_stories']['description']
 	);
 
 	// Events.
