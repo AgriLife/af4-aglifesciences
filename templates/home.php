@@ -32,9 +32,9 @@ function agls_home_styles() {
 
 	wp_register_style(
 		'aglifesciences-home',
-		ALSAF4_DIR_URL . '/css/home.css',
+		ALSAF4_DIR_URL . 'css/home.css',
 		array(),
-		filemtime( ALSAF4_DIR_PATH . '/css/home.css' ),
+		filemtime( ALSAF4_DIR_PATH . 'css/home.css' ),
 		'screen'
 	);
 
