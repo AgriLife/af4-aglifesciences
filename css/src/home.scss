@@ -4,7 +4,10 @@
 @import "settings";
 
 .site-inner > .grid-container {
-	padding-top: 0;
+	padding: {
+		top: 0;
+		bottom: 0;
+	}
 }
 
 .arrow-right {
@@ -87,7 +90,7 @@ h3,
 	}
 }
 
-.about,
+.about-research,
 .student-section {
 	background-color: $gray-lighterest; // We should implement a color pallet management system.
 }
@@ -110,6 +113,12 @@ h3,
 	.grid-padding-x > .cell {
 		padding-left: 1.75rem;
 		padding-right: 1.75rem;
+	}
+
+	> .alignfull {
+		> .grid-container {
+			max-width: 71rem;
+		}
 	}
 
 	.grid-padding-x > .cell.about {
@@ -214,7 +223,7 @@ h3,
 			hyphens: auto;
 		}
 
-		> .grid-x {
+		> .grid-container > .grid-x {
 			margin: 0;
 
 			> .cell:first-child {
