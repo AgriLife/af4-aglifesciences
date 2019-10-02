@@ -268,7 +268,7 @@ function study_abroad_content() {
 		$thumb      = get_the_post_thumbnail( $post->ID, 'medium_cropped' );
 		$tag        = 'div';
 		$link       = array_key_exists( 'link', $fields ) ? $fields['link'] : false;
-		$link_open  = $link ? "<a href=\"{$link}\" class=\"wrap\" title=\"{$post->post_title}\">" : '<div class=\"wrap\">';
+		$link_open  = $link ? "<a href=\"{$link}\" class=\"wrap\" title=\"{$post->post_title}\" target=\"_blank\">" : '<div class=\"wrap\">';
 		$link_close = $link ? '</a>' : '</div>';
 
 		foreach ( $terms as $term ) {
@@ -312,9 +312,10 @@ function study_abroad_content() {
 				'data-post-search-tiles' => array(),
 			),
 			'a'   => array(
-				'href'  => array(),
-				'class' => array(),
-				'title' => array(),
+				'href'   => array(),
+				'class'  => array(),
+				'title'  => array(),
+				'target' => array(),
 			),
 			'img' => array(
 				'alt'   => array(),
