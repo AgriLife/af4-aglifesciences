@@ -265,7 +265,8 @@ function study_abroad_content() {
 		$terms      = wp_get_post_terms( $post->ID, $taxonomies );
 		$fields     = get_fields( $post->ID ) ? get_fields( $post->ID ) : array();
 		$class      = [ 'entry', 'cell', 'medium-3', 'small-6' ];
-		$thumb      = get_the_post_thumbnail( $post->ID, 'medium_cropped' );
+		$thumb_id   = get_post_thumbnail_id( $post->ID );
+		$thumb      = wp_get_attachment_image( $thumb_id, 'medium_cropped' );
 		$tag        = 'div';
 		$link       = array_key_exists( 'link', $fields ) ? $fields['link'] : false;
 		$link_open  = $link ? "<a href=\"{$link}\" class=\"wrap\" title=\"{$post->post_title}\" target=\"_blank\">" : '<div class=\"wrap\">';

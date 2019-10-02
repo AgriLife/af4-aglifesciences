@@ -58,7 +58,7 @@ function home_content() {
 		'about_research'  => '<div class="alignfull about-research"><div class="grid-container"><div class="grid-x grid-padding-x"><div class="about cell center-y padding-y medium-6 small-12"><div class="center-y-wrap"><h2>%s</h2>%s<a class="button" href="%s" target="%s">%s</a></div></div><div class="research cell medium-6 small-12"><a href="%s"><h3 class="h2"><span class="first-word">Research</span> Stories</h3>%s<div class="excerpt">%s</div></a></div></div></div></div>',
 		'events'          => '<div class="alignfull events invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><h2 class="cell medium-12 small-12">Events</h2>%s</div></div></div>',
 		'livewhale'       => '<div class="alignfull livewhale invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="events-cell cell medium-auto small-12 grid-container"><div class="grid-x grid-padding-x">%s</div></div><div class="events-all cell medium-shrink small-12"><a class="h3 arrow-right" href="#">All Events</a></div></div></div></div>',
-		'student_section' => '<div class="alignfull student-section"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="image arrow-wrap cell medium-4"><img src="%s" alt="%s"><div class="arrow-right hide-for-small-only"></div></div><div class="text cell center-y medium-8 small-12"><div class="center-y-wrap"><h2>%s</h2><div class="statement">%s</div><a class="button" href="%s" target="%s">%s</a></div></div></div></div></div>',
+		'student_section' => '<div class="alignfull student-section"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="image arrow-wrap cell medium-4">%s<div class="arrow-right hide-for-small-only"></div></div><div class="text cell center-y medium-8 small-12"><div class="center-y-wrap"><h2>%s</h2><div class="statement">%s</div><a class="button" href="%s" target="%s">%s</a></div></div></div></div></div>',
 	);
 
 	// Top image.
@@ -99,7 +99,8 @@ function home_content() {
 	);
 
 	// About and Research.
-	$output .= sprintf(
+	$research_story_image = wp_get_attachment_image( $fields['research_stories']['image'], 'large' );
+	$output              .= sprintf(
 		$output_template['about_research'],
 		$fields['about']['heading'],
 		$fields['about']['description'],
@@ -107,7 +108,7 @@ function home_content() {
 		$fields['about']['link']['target'],
 		$fields['about']['link']['title'],
 		$fields['research_stories']['link']['url'],
-		wp_get_attachment_image( $fields['research_stories']['image'], 'large' ),
+		$research_story_image,
 		$fields['research_stories']['description']
 	);
 
@@ -173,10 +174,10 @@ function home_content() {
 	);
 
 	// Student section.
-	$output .= sprintf(
+	$student_image_id = $fields['student_section']['image'];
+	$output          .= sprintf(
 		$output_template['student_section'],
-		$fields['student_section']['image']['url'],
-		$fields['student_section']['image']['alt'],
+		wp_get_attachment_image( $student_image_id, 'medium_large' ),
 		$fields['student_section']['heading'],
 		$fields['student_section']['content'],
 		$fields['student_section']['link']['url'],
@@ -184,9 +185,7 @@ function home_content() {
 		$fields['student_section']['link']['title']
 	);
 
-	echo wp_kses_post(
-		$output
-	);
+	echo wp_kses_post( $output );
 
 }
 
