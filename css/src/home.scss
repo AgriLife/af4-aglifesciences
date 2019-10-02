@@ -46,7 +46,7 @@ $block-vertical-padding: 2.5rem;
 		}
 
 		.grid-padding-x > .cell.about {
-			padding: $padding * 2;
+			padding: $padding $padding * 2;
 		}
 
 		.livewhale {
