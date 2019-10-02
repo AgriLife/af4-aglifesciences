@@ -156,7 +156,7 @@ function home_content() {
 		}
 
 		$l_event_list .= sprintf(
-			'<div class="event cell medium-auto small-12"><div class="grid-x grid-padding-x"><div class="cell date shrink"><div class="month h3">%s</div><div class="h2 day">%s</div></div><div class="cell title auto"><a href="%s" title="%s" class="event-title truncate truncate-2">%s</a><div class="location truncate truncate-2">%s</div></div></div></div>',
+			'<div class="event cell medium-auto small-12"><div class="grid-x grid-padding-x"><div class="cell date shrink"><div class="month h3">%s</div><div class="h2 day">%s</div></div><div class="cell title auto"><a href="%s" title="%s" class="event-title medium-truncate-lines medium-truncate-2-lines">%s</a><div class="location medium-truncate-lines medium-truncate-2-lines">%s</div></div></div></div>',
 			$date_month,
 			$date_day,
 			$url,
