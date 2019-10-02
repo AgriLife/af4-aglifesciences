@@ -6,6 +6,8 @@
 $home-cell-padding: 1.75rem;
 $block-vertical-padding: 2.5rem;
 
+/* Cell padding mixin.
+---------------------------------- */
 @mixin home-cell-padding( $padding ){
 	.entry-content {
 		.padding-y {
@@ -47,12 +49,6 @@ $block-vertical-padding: 2.5rem;
 			padding: $padding * 2;
 		}
 
-		.events {
-			h2 {
-				margin-bottom: $padding + .75rem;
-			}
-		}
-
 		.livewhale {
 			.events-cell > .grid-padding-x {
 				margin: {
@@ -68,6 +64,12 @@ $block-vertical-padding: 2.5rem;
 				}
 			}
 		}
+	}
+}
+
+@include breakpoint(small only) {
+	.small-12 ~ .small-12 {
+		margin-top: $paragraph-margin-bottom;
 	}
 }
 
@@ -185,7 +187,11 @@ h3,
 		padding: 0;
 	}
 
+	/* About / Research block.
+	---------------------------------- */
 	.research {
+		margin-top: 0;
+
 		> a {
 			display: block;
 			width: 100%;
@@ -200,7 +206,7 @@ h3,
 			color: $whiter;
 			position: absolute;
 			top: 0;
-			left: 25%;
+			left: 28%;
 			text: {
 				transform: none;
 				shadow: 0 0 4px $black, 0 0 4px $black, 0 0 2px $black;
@@ -226,8 +232,26 @@ h3,
 				}
 			}
 
+			@include breakpoint(small only) {
+				font-size: 2.75rem;
+			}
+
+			@include breakpoint(525px down) {
+				left: 30%;
+			}
+
+			@include breakpoint(460px down) {
+				left: 40%;
+
+				.first-word::after {
+					height: 4rem;
+				}
+			}
+
 			@include breakpoint(medium) {
-				@include breakpoint(975px down) {
+				left: 25%;
+
+				@include breakpoint(985px down) {
 					left: 33%;
 
 					.first-word {
@@ -251,12 +275,27 @@ h3,
 			text-transform: uppercase;
 			font-weight: 400;
 			padding: .9em 1.15em;
+			position: absolute;
+			right: 0;
+			top: 37%;
+			width: 45%;
+
+			@include breakpoint(525px down) {
+				width: 90%;
+				right: 5%;
+				top: 75%;
+				transform: translateY(-50%);
+				max-height: 45%;
+				overflow: auto;
+			}
+
+			@include breakpoint(415px down) {
+				position: static;
+				width: 100%;
+				transform: none;
+			}
 
 			@include breakpoint(medium) {
-				position: absolute;
-				right: 0;
-				top: 37%;
-				width: 45%;
 
 				@include breakpoint(975px down) {
 					top: auto;
@@ -292,17 +331,43 @@ h3,
 		}
 	}
 
+	/* Events block.
+	---------------------------------- */
 	.events {
 		h2 {
 			text-transform: none;
 			text-align: center;
+
+			+ .cell {
+				margin-top: 0;
+			}
 		}
 
 		h3 {
 			margin-top: .5rem;
 		}
+
+		.cell a {
+			display: flex;
+			flex: 1 1 100%;
+			flex-wrap: wrap;
+
+			div {
+				margin-bottom: 1rem;
+			}
+
+			@include breakpoint(medium) {
+				display: block;
+
+				div {
+					margin-bottom: 0;
+				}
+			}
+		}
 	}
 
+	/* LiveWhale block.
+	---------------------------------- */
 	.livewhale {
 		p {
 			hyphens: auto;
@@ -348,7 +413,10 @@ h3,
 
 		.event {
 			min-width: 300px;
-			padding: $home-cell-padding / 2;
+
+			@include breakpoint(medium) {
+				padding: $home-cell-padding / 2;
+			}
 
 			.cell {
 				padding: {
@@ -359,6 +427,8 @@ h3,
 		}
 	}
 
+	/* Student section block.
+	---------------------------------- */
 	.student-section {
 		h2 {
 			font-size: 3rem;
@@ -402,13 +472,23 @@ h3,
 	}
 }
 
-@include home-cell-padding( 1.75rem );
+@include home-cell-padding( .75rem );
+
+@include breakpoint(915px up) {
+	$padding: 1.75rem;
+
+	@include home-cell-padding( $padding );
+
+	.entry-content {
+		.events h2 {
+			margin-bottom: $padding + .75rem;
+		}
+	}
+}
 
 @include breakpoint(medium) {
 	@include breakpoint(915px down) {
 		$padding: .75rem;
-
-		@include home-cell-padding( $padding );
 
 		.entry-content {
 			.alignfull {
@@ -416,6 +496,10 @@ h3,
 					left: .5rem;
 					right: .5rem;
 				}
+			}
+
+			.events h2 {
+				margin-bottom: $padding + .75rem;
 			}
 
 			> .livewhale.alignfull > .grid-container:not(.full) > .grid-padding-x {

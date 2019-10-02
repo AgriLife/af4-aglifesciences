@@ -58,7 +58,7 @@ function home_content() {
 		'about_research'  => '<div class="alignfull about-research"><div class="grid-container"><div class="grid-x grid-padding-x"><div class="about cell center-y padding-y medium-6 small-12"><div class="center-y-wrap"><h2>%s</h2>%s<a class="button" href="%s" target="%s">%s</a></div></div><div class="research cell medium-6 small-12"><a href="%s"><h3 class="h2"><span class="first-word">Research</span> Stories</h3>%s<div class="excerpt">%s</div></a></div></div></div></div>',
 		'events'          => '<div class="alignfull events invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><h2 class="cell medium-12 small-12">Events</h2>%s</div></div></div>',
 		'livewhale'       => '<div class="alignfull livewhale invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="events-cell cell medium-auto small-12 grid-container"><div class="grid-x grid-padding-x">%s</div></div><div class="events-all cell medium-shrink small-12"><a class="h3 arrow-right" href="#">All Events</a></div></div></div></div>',
-		'student_section' => '<div class="alignfull student-section"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="image arrow-wrap cell medium-4 small-4"><img src="%s" alt="%s"><div class="arrow-right"></div></div><div class="text cell center-y medium-8 small-8"><div class="center-y-wrap"><h2>%s</h2><div class="statement">%s</div><a class="button" href="%s" target="%s">%s</a></div></div></div></div></div>',
+		'student_section' => '<div class="alignfull student-section"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="image arrow-wrap cell medium-4 hide-for-small-only"><img src="%s" alt="%s"><div class="arrow-right"></div></div><div class="text cell center-y medium-8 small-12"><div class="center-y-wrap"><h2>%s</h2><div class="statement">%s</div><a class="button" href="%s" target="%s">%s</a></div></div></div></div></div>',
 	);
 
 	// Top image.
@@ -117,10 +117,10 @@ function home_content() {
 	foreach ( $fields['events'] as $event ) {
 
 		$events .= sprintf(
-			'<div class="cell medium-4 small-12"><a href="%s" target="%s">%s<h3 class="arrow-right">%s</h3><div>%s</div></a></div>',
+			'<div class="cell medium-4 small-12"><a href="%s" target="%s">%s<h3 class="arrow-right small-order-1">%s</h3><div class="small-order-2">%s</div></a></div>',
 			$event['link']['url'],
 			$event['link']['target'],
-			wp_get_attachment_image( $event['image'], 'medium_large' ),
+			wp_get_attachment_image( $event['image'], 'medium_large', false, array( 'class' => 'small-order-3 attachment-medium_large size-medium_large' ) ),
 			$event['heading'],
 			$event['description']
 		);
@@ -156,7 +156,7 @@ function home_content() {
 		}
 
 		$l_event_list .= sprintf(
-			'<div class="event cell auto"><div class="grid-x grid-padding-x"><div class="cell date shrink"><div class="month h3">%s</div><div class="h2 day">%s</div></div><div class="cell title auto"><a href="%s" title="%s" class="event-title truncate truncate-2">%s</a><div class="location truncate truncate-2">%s</div></div></div></div>',
+			'<div class="event cell medium-auto small-12"><div class="grid-x grid-padding-x"><div class="cell date shrink"><div class="month h3">%s</div><div class="h2 day">%s</div></div><div class="cell title auto"><a href="%s" title="%s" class="event-title truncate truncate-2">%s</a><div class="location truncate truncate-2">%s</div></div></div></div>',
 			$date_month,
 			$date_day,
 			$url,
