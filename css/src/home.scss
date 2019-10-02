@@ -412,10 +412,12 @@ h3,
 		}
 
 		.event {
-			min-width: 300px;
-
 			@include breakpoint(medium) {
 				padding: $home-cell-padding / 2;
+			}
+
+			@include breakpoint(large down) {
+				min-width: 275px;
 			}
 
 			.cell {
@@ -430,9 +432,14 @@ h3,
 	/* Student section block.
 	---------------------------------- */
 	.student-section {
+		text-align: center;
+
 		h2 {
 			font-size: 3rem;
-			margin-bottom: 2.5rem;
+
+			@include breakpoint(medium) {
+				margin-bottom: 2.5rem;
+			}
 		}
 
 		.arrow-wrap {
@@ -457,10 +464,13 @@ h3,
 		}
 
 		.button {
-			transform: scale(1.2) {
-				origin: 0 0;
-			}
 			margin-top: 1.5rem;
+
+			@include breakpoint(medium) {
+				transform: scale(1.2) {
+					origin: 0 0;
+				}
+			}
 		}
 
 		.statement {
@@ -468,6 +478,10 @@ h3,
 				size: 1.5rem;
 				weight: 300;
 			}
+		}
+
+		@include breakpoint(medium) {
+			text-align: left;
 		}
 	}
 }
