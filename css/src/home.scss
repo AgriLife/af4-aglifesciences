@@ -466,6 +466,10 @@ h3,
 		.button {
 			margin-top: 1.5rem;
 
+			@include breakpoint(small only) {
+				margin-right: 0;
+			}
+
 			@include breakpoint(medium) {
 				transform: scale(1.2) {
 					origin: 0 0;
