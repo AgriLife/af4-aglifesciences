@@ -46,7 +46,7 @@ $block-vertical-padding: 2.5rem;
 		}
 
 		.grid-padding-x > .cell.about {
-			padding: $padding $padding * 2;
+			padding: $padding;
 		}
 
 		.livewhale {
@@ -505,7 +505,7 @@ h3,
 		$padding: .75rem;
 
 		.entry-content {
-			.alignfull {
+			.alignfull:not(.no-padding) {
 				padding: {
 					left: .5rem;
 					right: .5rem;
