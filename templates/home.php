@@ -68,35 +68,40 @@ function home_content() {
 	);
 
 	// Action items.
-	$action_items = '';
-	foreach ( $fields['action_items'] as $item ) {
+	if ( $fields['action_items'] ) {
 
-		$links = '';
+		$action_items = '';
 
-		foreach ( $item['links'] as $link ) {
+		foreach ( $fields['action_items'] as $item ) {
 
-			$links .= sprintf(
-				'<a class="button" href="%s" target="%s">%s</a>',
-				$link['link']['url'],
-				$link['link']['target'],
-				$link['link']['title']
+			$links = '';
+
+			foreach ( $item['links'] as $link ) {
+
+				$links .= sprintf(
+					'<a class="button" href="%s" target="%s">%s</a>',
+					$link['link']['url'],
+					$link['link']['target'],
+					$link['link']['title']
+				);
+
+			}
+
+			$action_items .= sprintf(
+				'<div class="cell medium-4 small-12"><h2 class="h3 arrow-right">%s</h2><p>%s</p>%s</div>',
+				$item['title'],
+				$item['subtitle'],
+				$links
 			);
 
 		}
 
-		$action_items .= sprintf(
-			'<div class="cell medium-4 small-12"><h2 class="h3 arrow-right">%s</h2><p>%s</p>%s</div>',
-			$item['title'],
-			$item['subtitle'],
-			$links
+		$output .= sprintf(
+			$output_template['action_items'],
+			$action_items
 		);
 
 	}
-
-	$output .= sprintf(
-		$output_template['action_items'],
-		$action_items
-	);
 
 	// About and Research.
 	$research_story_image = wp_get_attachment_image( $fields['research_stories']['image'], 'large' );
@@ -113,25 +118,29 @@ function home_content() {
 	);
 
 	// Events.
-	$events = '';
+	if ( $fields['events'] ) {
 
-	foreach ( $fields['events'] as $event ) {
+		$events = '';
 
-		$events .= sprintf(
-			'<div class="cell medium-4 small-12"><a href="%s" target="%s">%s<h3 class="arrow-right small-order-1">%s</h3><div class="small-order-2">%s</div></a></div>',
-			$event['link']['url'],
-			$event['link']['target'],
-			wp_get_attachment_image( $event['image'], 'medium_large', false, array( 'class' => 'small-order-3 attachment-medium_large size-medium_large' ) ),
-			$event['heading'],
-			$event['description']
+		foreach ( $fields['events'] as $event ) {
+
+			$events .= sprintf(
+				'<div class="cell medium-4 small-12"><a href="%s" target="%s">%s<h3 class="arrow-right small-order-1">%s</h3><div class="small-order-2">%s</div></a></div>',
+				$event['link']['url'],
+				$event['link']['target'],
+				wp_get_attachment_image( $event['image'], 'medium_large', false, array( 'class' => 'small-order-3 attachment-medium_large size-medium_large' ) ),
+				$event['heading'],
+				$event['description']
+			);
+
+		}
+
+		$output .= sprintf(
+			$output_template['events'],
+			$events
 		);
 
 	}
-
-	$output .= sprintf(
-		$output_template['events'],
-		$events
-	);
 
 	// Livewhale.
 	$feed_json    = wp_remote_get( 'https://calendar.tamu.edu/live/json/events/group/College%20of%20Agriculture%20and%20Life%20Sciences/only_starred/true/' );

@@ -1,6 +1,6 @@
 {
   "name": "af4-aglifesciences",
-  "version": "0.7.14",
+  "version": "0.7.15",
   "description": "A plugin for The College of Agriculture and Life Sciences' main site on the AgriFlex4 theme.",
   "main": "af4-aglifesciences.php",
   "scripts": {
