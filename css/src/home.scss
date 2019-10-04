@@ -52,7 +52,7 @@ $block-vertical-padding: 2.5rem;
 		.livewhale {
 			.events-cell > .grid-padding-x {
 				margin: {
-					left: -$padding / 2;
+					left: -$padding;
 					right: -$padding;
 				}
 			}
@@ -518,10 +518,6 @@ h3,
 
 			.events h2 {
 				margin-bottom: $padding + .75rem;
-			}
-
-			> .livewhale.alignfull > .grid-container:not(.full) > .grid-padding-x {
-				margin-left: -1.25rem;
 			}
 
 			.student-section .arrow-wrap .arrow-right {
