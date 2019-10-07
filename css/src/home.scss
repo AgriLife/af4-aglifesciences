@@ -5,6 +5,7 @@
 
 $home-cell-padding: 1.75rem;
 $block-vertical-padding: 2.5rem;
+$dark-maroon: darken($maroon, 10%);
 
 /* Cell padding mixin.
 ---------------------------------- */
@@ -207,29 +208,37 @@ h3,
 			position: absolute;
 			top: 0;
 			left: 28%;
+			z-index: 2;
 			text: {
 				transform: none;
 				shadow: 0 0 4px $black, 0 0 4px $black, 0 0 2px $black;
 			}
 			line-height: .8;
 
-			.first-word {
+			.first-word-wrap {
+				display: flex;
+				align-items: flex-end;
 				font: 400 .6em $opensans;
 				vertical-align: baseline;
 				text-transform: uppercase;
-				display: block;
 				position: relative;
 				left: -80%;
+				border-right: 2px solid $button-red-highlight;
+				height: 7rem;
+			}
 
-				&::after {
-					content: "";
-					background-color: $button-red-highlight;
-					display: inline-block;
-					height: 7rem;
-					width: 2px;
-					box-shadow: 0 0 4px $black;
-					margin-left: .5em;
-				}
+			.first-word {
+				background-color: $dark-maroon;
+				padding: .7rem .6rem;
+				display: inline-block;
+				line-height: .85em;
+			}
+
+			.second-word {
+				background-color: $dark-maroon;
+				display: inline-block;
+				padding: .4rem .6rem .6rem;
+				line-height: 1em;
 			}
 
 			@include breakpoint(small only) {
@@ -243,8 +252,8 @@ h3,
 			@include breakpoint(460px down) {
 				left: 40%;
 
-				.first-word::after {
-					height: 4rem;
+				.first-word-wrap {
+					height: 3.5rem;
 				}
 			}
 
@@ -254,10 +263,8 @@ h3,
 				@include breakpoint(985px down) {
 					left: 33%;
 
-					.first-word {
-						&::after {
-							height: 5rem;
-						}
+					.first-word-wrap {
+						height: 5rem;
 					}
 				}
 
@@ -268,7 +275,6 @@ h3,
 		}
 
 		.excerpt {
-			$dark-maroon: darken($maroon, 10%);
 			color: $whiter;
 			background-color: $dark-maroon;
 			border-left: 2px solid $button-red-highlight;
@@ -279,6 +285,7 @@ h3,
 			right: 0;
 			top: 37%;
 			width: 45%;
+			z-index: 1;
 
 			@include breakpoint(525px down) {
 				width: 90%;
