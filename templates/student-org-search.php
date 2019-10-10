@@ -94,7 +94,7 @@ function student_organization_filters() {
 	$taxonomies          = get_object_taxonomies( $post_slug );
 	$excluded_taxonomies = array( 'level' );
 	$id                  = 'student-organization-sidebar-search';
-	$button_mobile       = '<a class="post-tile-search-toggle ' . $post_slug . '-toggle title-bar-navigation show-for-small-only" data-toggle="filter-wrap" data-toggle-focus="filter-wrap" aria-controls="filter-wrap"><div class="menu-icon"></div><div>Filters</div></a>';
+	$button_mobile       = '<a class="post-tile-search-toggle ' . $post_slug . '-toggle title-bar-navigation" data-toggle="search-sidebar"><div class="menu-icon"></div><div>Filters</div></a>';
 	$taxonomy_list       = implode( ',', $taxonomies );
 	$output              = '';
 	$query               = aso_get_posts( array( 'fields' => 'ids' ) );
@@ -105,7 +105,7 @@ function student_organization_filters() {
 		array(
 			'before'              => genesis_markup(
 				array(
-					'open'    => '<aside id="search-sidebar" class="' . $post_slug . '-search-sidebar widget-area cell small-12 medium-3" data-taxonomy-list="' . $taxonomy_list . '" data-post-tile-search><div class="wrap">' . $button_mobile . '<div id="filter-wrap" class="hide-for-small-only" data-toggler=".hide-for-small-only" aria-expanded="false">' . genesis_sidebar_title( $id ) . '<h2>Filter Programs<a href="#" data-post-tile-reset class="reset-search">Reset</a></h2>',
+					'open'    => '<aside id="search-sidebar" class="' . $post_slug . '-search-sidebar widget-area cell small-12 medium-3" data-toggler=".active" data-taxonomy-list="' . $taxonomy_list . '" data-post-tile-search><div class="sticky-target" data-options="marginTop:7;anchor:genesis-content;">' . $button_mobile . '<div id="filter-wrap">' . genesis_sidebar_title( $id ) . '<h2>Filter Programs<a href="#" data-post-tile-reset class="reset-search">Reset</a></h2>',
 					'context' => 'widget-area-wrap',
 					'echo'    => false,
 					'params'  => array(
