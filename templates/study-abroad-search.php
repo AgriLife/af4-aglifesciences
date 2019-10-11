@@ -144,9 +144,11 @@ function study_abroad_filters() {
 	}
 
 	// Remove taxonomies from search filters based on custom field selection.
-	foreach ( $excluded_taxonomies as $taxonomy ) {
-		if ( 'none' !== $taxonomy ) {
-			unset( $tax_terms[ $taxonomy ] );
+	if ( $excluded_taxonomies ) {
+		foreach ( $excluded_taxonomies as $taxonomy ) {
+			if ( 'none' !== $taxonomy ) {
+				unset( $tax_terms[ $taxonomy ] );
+			}
 		}
 	}
 
