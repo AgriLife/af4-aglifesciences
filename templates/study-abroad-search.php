@@ -63,16 +63,16 @@ function asa_get_posts( $args = array() ) {
 	// Restrict posts to value of student levels custom field.
 	if ( 0 < count( $levels ) ) {
 		$args['tax_query'] = array(); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-	}
 
-	foreach ( $levels as $level ) {
+		foreach ( $levels as $level ) {
 
-		$args['tax_query'][] = array(
-			'taxonomy' => $taxonomy,
-			'field'    => 'slug',
-			'terms'    => $level->slug,
-		);
+			$args['tax_query'][] = array(
+				'taxonomy' => $taxonomy,
+				'field'    => 'slug',
+				'terms'    => $level->slug,
+			);
 
+		}
 	}
 
 	return new WP_Query( $args );
