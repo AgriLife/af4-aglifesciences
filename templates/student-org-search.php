@@ -194,6 +194,7 @@ function student_organization_filters() {
 			'aside'  => array(
 				'id'                    => array(),
 				'class'                 => array(),
+				'data-toggler'          => array(),
 				'data-sticky-container' => array(),
 				'data-taxonomy-list'    => array(),
 				'data-post-tile-search' => array(),
@@ -218,6 +219,7 @@ function student_organization_filters() {
 				'class'           => array(),
 				'data-sticky'     => array(),
 				'data-sticky-on'  => array(),
+				'data-options'    => array(),
 				'data-margin-top' => array(),
 				'data-anchor'     => array(),
 				'data-top-anchor' => array(),
