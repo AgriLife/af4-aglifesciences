@@ -105,7 +105,7 @@ function student_organization_filters() {
 		array(
 			'before'              => genesis_markup(
 				array(
-					'open'    => '<aside id="search-sidebar" class="' . $post_slug . '-search-sidebar widget-area cell small-12 medium-3" data-toggler=".active" data-taxonomy-list="' . $taxonomy_list . '" data-post-tile-search><div class="sticky-target" data-options="marginTop:7;anchor:genesis-content;">' . $button_mobile . '<div id="filter-wrap">' . genesis_sidebar_title( $id ) . '<h2>Filter Programs<a href="#" data-post-tile-reset class="reset-search">Reset</a></h2>',
+					'open'    => '<aside id="search-sidebar" class="' . $post_slug . '-search-sidebar widget-area cell small-12 medium-3" data-toggler=".active" data-taxonomy-list="' . $taxonomy_list . '" data-post-tile-search><div class="sticky-target" data-sticky data-options="stickyOn:medium2;marginTop:7;anchor:genesis-content;">' . $button_mobile . '<div id="filter-wrap">' . genesis_sidebar_title( $id ) . '<h2>Filter Programs<a href="#" data-post-tile-reset class="reset-search">Reset</a></h2>',
 					'context' => 'widget-area-wrap',
 					'echo'    => false,
 					'params'  => array(
