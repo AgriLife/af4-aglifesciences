@@ -47,7 +47,7 @@ $dark-maroon: darken($maroon, 10%);
 		}
 
 		.grid-padding-x > .cell.about {
-			padding: $padding;
+			padding: 2.62rem 1.5rem;
 		}
 
 		.livewhale {
@@ -179,6 +179,10 @@ h3,
 	font-weight: 500;
 }
 
+.entry {
+	margin-top: 0;
+}
+
 .entry-content {
 	.cell.center-y {
 		display: flex;
@@ -235,6 +239,7 @@ h3,
 				transform: none;
 				shadow: 0 0 4px $black, 0 0 4px $black, 0 0 2px $black;
 			}
+			font-weight: 900;
 			line-height: .8;
 
 			.first-word-wrap {
@@ -254,6 +259,7 @@ h3,
 				padding: .7rem .6rem;
 				display: inline-block;
 				line-height: .85em;
+				left: -59%;
 			}
 
 			.second-word {
@@ -305,7 +311,7 @@ h3,
 			padding: .9em 1.15em;
 			position: absolute;
 			right: 0;
-			top: 37%;
+			top: 60%;
 			width: 45%;
 			z-index: 1;
 
@@ -517,6 +523,11 @@ h3,
 			text-align: left;
 		}
 	}
+
+	.wp-block-image {
+		margin-bottom: 0rem;
+	}
+
 }
 
 @include home-cell-padding( .75rem );
@@ -556,4 +567,8 @@ h3,
 			}
 		}
 	}
+}
+
+.ab-block-container .ab-container-content {
+	text-align: center;
 }
