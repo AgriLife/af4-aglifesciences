@@ -184,7 +184,7 @@ function home_content() {
 	);
 
 	// Student section.
-	$student_image_id = $fields['student_section']['image'];
+	$student_image_id = $fields['student_section']['image']['ID'];
 	$output          .= sprintf(
 		$output_template['student_section'],
 		wp_get_attachment_image( $student_image_id, 'medium_large' ),
