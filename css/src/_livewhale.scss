@@ -46,6 +46,12 @@
 	.event {
 		@include breakpoint(medium) {
 			padding: $grid-margin-gutters / 2;
+
+			.cell.date,
+			.cell.title {
+				padding-left: 1rem;
+				padding-right: 1rem;
+			}
 		}
 
 		@include breakpoint(large down) {
