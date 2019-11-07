@@ -57,7 +57,7 @@ function home_content() {
 		'action_items'    => '<div class="alignfull invert action-items"><div class="grid-container"><div class="grid-x grid-padding-x padding-y">%s</div></div></div>',
 		'about_research'  => '<div class="alignfull no-padding about-research"><div class="grid-container"><div class="grid-x grid-padding-x"><div class="about cell center-y padding-y medium-6 small-12"><div class="center-y-wrap"><h2>%s</h2>%s<a class="button" href="%s" target="%s">%s</a></div></div><div class="research cell medium-6 small-12"><a href="%s"><h3 class="h2"><span class="first-word-wrap"><span class="first-word">Research</span></span> <span class="second-word">Stories</span></h3>%s<div class="excerpt">%s</div></a></div></div></div></div>',
 		'events'          => '<div class="alignfull events invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><h2 class="cell medium-12 small-12">Events</h2>%s</div></div></div>',
-		'livewhale'       => '<div class="alignfull livewhale invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="events-cell cell medium-auto small-12 grid-container"><div class="grid-x grid-padding-x">%s</div></div><div class="events-all cell medium-shrink small-12"><a class="h3 arrow-right" href="#">All Events</a></div></div></div></div>',
+		'livewhale'       => '<div class="alignfull livewhale invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="events-cell cell medium-auto small-12 grid-container"><div class="grid-x grid-padding-x">%s</div></div><div class="events-all cell medium-shrink small-12"><a class="h3 arrow-right" href="http://calendar.tamu.edu/agls/">All Events</a></div></div></div></div>',
 		'student_section' => '<div class="alignfull student-section"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="image arrow-wrap cell medium-4">%s<div class="arrow-right hide-for-small-only"></div></div><div class="text cell center-y medium-8 small-12"><div class="center-y-wrap"><h2>%s</h2><div class="statement">%s</div><a class="button" href="%s" target="%s">%s</a></div></div></div></div></div>',
 	);
 
@@ -144,7 +144,7 @@ function home_content() {
 	}
 
 	// Livewhale.
-	$feed_json    = wp_remote_get( 'https://calendar.tamu.edu/live/json/events/group/College%20of%20Agriculture%20and%20Life%20Sciences/only_starred/true/' );
+	$feed_json    = wp_remote_get( 'https://calendar.tamu.edu/live/json/events/group/College%20of%20Agriculture%20and%20Life%20Sciences/only_starred/true/hide_repeats/true/' );
 	$feed_array   = json_decode( $feed_json['body'], true );
 	$l_events     = array_slice( $feed_array, 0, 3 ); // Choose number of events.
 	$l_event_list = '';
