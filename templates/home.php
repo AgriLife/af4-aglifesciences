@@ -162,7 +162,7 @@ function home_content() {
 
 		if ( array_key_exists( 'custom_room_number', $event ) && ! empty( $event['custom_room_number'] ) ) {
 
-			$location = $event['custom_room_number'];
+			$location .= ' ' . $event['custom_room_number'];
 
 		}
 
