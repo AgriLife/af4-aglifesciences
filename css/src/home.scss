@@ -39,7 +39,8 @@ $dark-maroon: darken($maroon, 10%);
 				}
 			}
 
-			&.about-research > .grid-container:not(.full) > .grid-padding-x {
+			&.about-research > .grid-container:not(.full) > .grid-padding-x,
+			&.student-section > .grid-container:not(.full) > .grid-padding-x {
 				margin: {
 					left: -$padding * 2;
 					right: -$padding * 2;
@@ -176,8 +177,10 @@ h3,
 	background-color: $gray-lighterest; // We should implement a color pallet management system.
 }
 
-.about h2 {
+.entry-content h2 {
 	font-weight: 500;
+	line-height: 1;
+	margin-bottom: 1rem;
 }
 
 .entry {
@@ -211,7 +214,8 @@ h3,
 		}
 	}
 
-	.grid-padding-x > .cell.research {
+	.grid-padding-x > .cell.research,
+	.grid-padding-x > .cell.image {
 		padding: 0;
 	}
 
@@ -407,14 +411,6 @@ h3,
 	.student-section {
 		text-align: center;
 
-		h2 {
-			font-size: 3rem;
-
-			@include breakpoint(medium) {
-				margin-bottom: 2.5rem;
-			}
-		}
-
 		.arrow-wrap {
 			position: relative;
 
@@ -436,24 +432,9 @@ h3,
 			}
 		}
 
-		.button {
-			margin-top: 1.5rem;
-
-			@include breakpoint(small only) {
+		@include breakpoint(small only) {
+			.button {
 				margin-right: 0;
-			}
-
-			@include breakpoint(medium) {
-				transform: scale(1.2) {
-					origin: 0 0;
-				}
-			}
-		}
-
-		.statement {
-			font: {
-				size: 1.5rem;
-				weight: 300;
 			}
 		}
 
