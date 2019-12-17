@@ -126,7 +126,7 @@ function home_content() {
 		foreach ( $fields['events'] as $event ) {
 
 			$events .= sprintf(
-				'<div class="cell medium-4 small-12"><a href="%s" target="%s">%s<h3 class="arrow-right small-order-1">%s</h3><div class="small-order-2">%s</div></a></div>',
+				'<div class="cell medium-auto small-12"><a href="%s" target="%s">%s<h3 class="arrow-right small-order-1">%s</h3><div class="small-order-2">%s</div></a></div>',
 				$event['link']['url'],
 				$event['link']['target'],
 				wp_get_attachment_image( $event['image'], 'three_two_medium', false, array( 'class' => 'small-order-3 attachment-three_two_medium size-three_two_medium' ) ),
