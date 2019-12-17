@@ -89,6 +89,7 @@ function study_abroad_filters() {
 
 	$post_slug           = 'study-abroad';
 	$taxonomies          = get_object_taxonomies( $post_slug );
+	$fields              = get_field( 'study_abroad_search' );
 	$excluded_taxonomies = get_field( 'study_abroad_search' )['exclude_tax_from_search_filters'];
 	$id                  = 'study-abroad-sidebar-search';
 	$button_mobile       = '<a class="post-tile-search-toggle ' . $post_slug . '-toggle title-bar-navigation" data-toggle="search-sidebar"><div class="menu-icon"></div><div>Filters</div></a>';
@@ -144,6 +145,10 @@ function study_abroad_filters() {
 	}
 
 	// Remove taxonomies from search filters based on custom field selection.
+	if ( 0 < count( $fields['student_level'] ) ) {
+		array_push( $excluded_taxonomies, 'study-abroad-classification' );
+	}
+
 	if ( $excluded_taxonomies ) {
 		foreach ( $excluded_taxonomies as $taxonomy ) {
 			if ( 'none' !== $taxonomy ) {
