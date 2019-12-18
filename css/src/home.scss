@@ -48,8 +48,11 @@ $dark-maroon: darken($maroon, 10%);
 			}
 		}
 
-		.grid-padding-x > .cell.about {
-			padding: 2.62rem 1.5rem;
+		.grid-padding-x {
+			> .cell.about,
+			> .cell.text {
+				padding: 2.62rem 1.5rem;
+			}
 		}
 
 		.livewhale {
@@ -410,37 +413,15 @@ h3,
 	/* Student section block.
 	---------------------------------- */
 	.student-section {
-		text-align: center;
-
-		.arrow-wrap {
-			position: relative;
-
-			.arrow-right {
-				$width: 2rem;
-				position: absolute;
-				top: 5.9rem;
-				background-color: $nav-yellow;
-				width: $width;
-				height: $width + .5rem;
-				right: 1.75rem - $width / 2;
-
-				&::after {
-					border-color: $black;
-					top: 50%;
-					left: calc(50% - .55rem);
-					transform: translate(-50%, -50%) rotate(-45deg);
-				}
-			}
-		}
 
 		@include breakpoint(small only) {
+			.text.cell {
+				margin-top: 0;
+			}
+
 			.button {
 				margin-right: 0;
 			}
-		}
-
-		@include breakpoint(medium) {
-			text-align: left;
 		}
 	}
 
