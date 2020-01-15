@@ -49,7 +49,7 @@ function asa_get_posts( $args = array() ) {
 	$post_slug = 'study-abroad';
 	$taxonomy  = 'study-abroad-classification';
 	$fields    = get_field( 'study_abroad_search' );
-	$levels    = $fields['student_level'];
+	$levels    = array_key_exists( 'student_level', $fields ) ? $fields['student_level'] : false;
 	$args      = array_merge(
 		array(
 			'post_type'      => $post_slug,
@@ -60,9 +60,14 @@ function asa_get_posts( $args = array() ) {
 		$args
 	);
 
-	// Restrict posts to value of student levels custom field.
-	if ( 0 < count( $levels ) ) {
-		$args['tax_query'] = array(); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+	if ( $levels ) {
+
+		// Restrict posts to value of student levels custom field.
+		if ( 0 < count( $levels ) ) {
+			$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+				'relation' => 'OR',
+			);
+		}
 
 		foreach ( $levels as $level ) {
 
