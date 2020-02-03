@@ -2,6 +2,7 @@
 
 @import "foundation";
 @import "settings";
+@import "livewhale";
 
 $home-cell-padding: 1.75rem;
 $block-vertical-padding: 2.5rem;
@@ -38,7 +39,8 @@ $dark-maroon: darken($maroon, 10%);
 				}
 			}
 
-			&.about-research > .grid-container:not(.full) > .grid-padding-x {
+			&.about-research > .grid-container:not(.full) > .grid-padding-x,
+			&.student-section > .grid-container:not(.full) > .grid-padding-x {
 				margin: {
 					left: -$padding * 2;
 					right: -$padding * 2;
@@ -46,8 +48,11 @@ $dark-maroon: darken($maroon, 10%);
 			}
 		}
 
-		.grid-padding-x > .cell.about {
-			padding: 2.62rem 1.5rem;
+		.grid-padding-x {
+			> .cell.about,
+			> .cell.text {
+				padding: 2.62rem 1.5rem;
+			}
 		}
 
 		.livewhale {
@@ -147,6 +152,7 @@ h3,
 
 	video {
 		display: block;
+		height: auto;
 	}
 
 	h2 {
@@ -175,8 +181,10 @@ h3,
 	background-color: $gray-lighterest; // We should implement a color pallet management system.
 }
 
-.about h2 {
+.entry-content h2 {
 	font-weight: 500;
+	line-height: 1;
+	margin-bottom: 1rem;
 }
 
 .entry {
@@ -210,7 +218,8 @@ h3,
 		}
 	}
 
-	.grid-padding-x > .cell.research {
+	.grid-padding-x > .cell.research,
+	.grid-padding-x > .cell.image {
 		padding: 0;
 	}
 
@@ -401,126 +410,18 @@ h3,
 		}
 	}
 
-	/* LiveWhale block.
-	---------------------------------- */
-	.livewhale {
-		p {
-			hyphens: auto;
-		}
-
-		.h2,
-		.h3 {
-			margin-bottom: 0;
-			line-height: 1;
-		}
-
-		.date {
-			border-right: 2px solid $button-red-highlight;
-			text-align: center;
-			padding: {
-				top: .2rem;
-				bottom: .2rem;
-			}
-		}
-
-		.month {
-			font: {
-				size: 1.6rem;
-				weight: 300;
-			}
-		}
-
-		.day {
-			font-weight: 700;
-		}
-
-		.title {
-			padding: {
-				top: .1rem;
-				bottom: .1rem;
-			}
-		}
-
-		.event-title {
-			font-weight: bold;
-			text-transform: uppercase;
-		}
-
-		.event {
-			@include breakpoint(medium) {
-				padding: $home-cell-padding / 2;
-			}
-
-			@include breakpoint(large down) {
-				min-width: 275px;
-			}
-
-			.cell {
-				padding: {
-					left: 1rem;
-					right: 1rem;
-				}
-			}
-		}
-	}
-
 	/* Student section block.
 	---------------------------------- */
 	.student-section {
-		text-align: center;
 
-		h2 {
-			font-size: 3rem;
-
-			@include breakpoint(medium) {
-				margin-bottom: 2.5rem;
+		@include breakpoint(small only) {
+			.text.cell {
+				margin-top: 0;
 			}
-		}
 
-		.arrow-wrap {
-			position: relative;
-
-			.arrow-right {
-				$width: 2rem;
-				position: absolute;
-				top: 5.9rem;
-				background-color: $nav-yellow;
-				width: $width;
-				height: $width + .5rem;
-				right: 1.75rem - $width / 2;
-
-				&::after {
-					border-color: $black;
-					top: 50%;
-					left: calc(50% - .55rem);
-					transform: translate(-50%, -50%) rotate(-45deg);
-				}
-			}
-		}
-
-		.button {
-			margin-top: 1.5rem;
-
-			@include breakpoint(small only) {
+			.button {
 				margin-right: 0;
 			}
-
-			@include breakpoint(medium) {
-				transform: scale(1.2) {
-					origin: 0 0;
-				}
-			}
-		}
-
-		.statement {
-			font: {
-				size: 1.5rem;
-				weight: 300;
-			}
-		}
-
-		@include breakpoint(medium) {
-			text-align: left;
 		}
 	}
 

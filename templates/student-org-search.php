@@ -64,7 +64,9 @@ function aso_get_posts( $args = array() ) {
 
 		// Restrict posts to value of student levels custom field.
 		if ( 0 < count( $levels ) ) {
-			$args['tax_query'] = array(); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+			$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+				'relation' => 'OR',
+			);
 		}
 
 		foreach ( $levels as $level ) {

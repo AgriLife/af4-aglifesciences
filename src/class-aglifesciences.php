@@ -107,6 +107,10 @@ class Aglifesciences {
 		// Add page template custom fields.
 		require_once ALSAF4_DIR_PATH . 'src/class-customfields.php';
 
+		// Add Genesis modifications.
+		require_once ALSAF4_DIR_PATH . 'src/class-genesis.php';
+		new \Aglifesciences\Genesis();
+
 		// Add post type classes.
 		require_once ALSAF4_DIR_PATH . 'src/class-posttype.php';
 		require_once ALSAF4_DIR_PATH . 'src/class-posttemplates.php';

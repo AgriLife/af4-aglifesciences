@@ -57,8 +57,8 @@ function home_content() {
 		'action_items'    => '<div class="alignfull invert action-items"><div class="grid-container"><div class="grid-x grid-padding-x padding-y">%s</div></div></div>',
 		'about_research'  => '<div class="alignfull no-padding about-research"><div class="grid-container"><div class="grid-x grid-padding-x"><div class="about cell center-y padding-y medium-6 small-12"><div class="center-y-wrap"><h2>%s</h2>%s<a class="button" href="%s" target="%s">%s</a></div></div><div class="research cell medium-6 small-12"><a href="%s"><h3 class="h2"><span class="first-word-wrap"><span class="first-word">Research</span></span> <span class="second-word">Stories</span></h3>%s<div class="excerpt">%s</div></a></div></div></div></div>',
 		'events'          => '<div class="alignfull events invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><h2 class="cell medium-12 small-12">Events</h2>%s</div></div></div>',
-		'livewhale'       => '<div class="alignfull livewhale invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="events-cell cell medium-auto small-12 grid-container"><div class="grid-x grid-padding-x">%s</div></div><div class="events-all cell medium-shrink small-12"><a class="h3 arrow-right" href="#">All Events</a></div></div></div></div>',
-		'student_section' => '<div class="alignfull student-section"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="image arrow-wrap cell medium-4">%s<div class="arrow-right hide-for-small-only"></div></div><div class="text cell center-y medium-8 small-12"><div class="center-y-wrap"><h2>%s</h2><div class="statement">%s</div><a class="button" href="%s" target="%s">%s</a></div></div></div></div></div>',
+		'livewhale'       => '<div class="alignfull livewhale invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><div class="events-cell cell medium-auto small-12 grid-container"><div class="grid-x grid-padding-x">%s</div></div><div class="events-all cell medium-shrink small-12"><a class="h3 arrow-right" href="http://calendar.tamu.edu/agls/">All Events</a></div></div></div></div>',
+		'student_section' => '<div class="alignfull student-section"><div class="grid-container"><div class="grid-x grid-padding-x"><div class="image cell center-y medium-6 small-12">%s</div><div class="text cell center-y medium-6 small-12 padding-y"><div class="center-y-wrap"><h2>%s</h2><div class="statement">%s</div><a class="button" href="%s" target="%s">%s</a></div></div></div></div></div>',
 	);
 
 	// Top image.
@@ -126,10 +126,10 @@ function home_content() {
 		foreach ( $fields['events'] as $event ) {
 
 			$events .= sprintf(
-				'<div class="cell medium-4 small-12"><a href="%s" target="%s">%s<h3 class="arrow-right small-order-1">%s</h3><div class="small-order-2">%s</div></a></div>',
+				'<div class="cell medium-auto small-12"><a href="%s" target="%s">%s<h3 class="arrow-right small-order-1">%s</h3><div class="small-order-2">%s</div></a></div>',
 				$event['link']['url'],
 				$event['link']['target'],
-				wp_get_attachment_image( $event['image'], 'medium_large', false, array( 'class' => 'small-order-3 attachment-medium_large size-medium_large' ) ),
+				wp_get_attachment_image( $event['image'], 'three_two_medium', false, array( 'class' => 'small-order-3 attachment-three_two_medium size-three_two_medium' ) ),
 				$event['heading'],
 				$event['description']
 			);
@@ -144,7 +144,7 @@ function home_content() {
 	}
 
 	// Livewhale.
-	$feed_json    = wp_remote_get( 'https://calendar.tamu.edu/live/json/events/group/College%20of%20Agriculture%20and%20Life%20Sciences/only_starred/true/' );
+	$feed_json    = wp_remote_get( 'https://calendar.tamu.edu/live/json/events/group/College%20of%20Agriculture%20and%20Life%20Sciences/only_starred/true/hide_repeats/true/' );
 	$feed_array   = json_decode( $feed_json['body'], true );
 	$l_events     = array_slice( $feed_array, 0, 3 ); // Choose number of events.
 	$l_event_list = '';
@@ -162,12 +162,12 @@ function home_content() {
 
 		if ( array_key_exists( 'custom_room_number', $event ) && ! empty( $event['custom_room_number'] ) ) {
 
-			$location = $event['custom_room_number'];
+			$location .= ' ' . $event['custom_room_number'];
 
 		}
 
 		$l_event_list .= sprintf(
-			'<div class="event cell medium-auto small-12"><div class="grid-x grid-padding-x"><div class="cell date shrink"><div class="month h3">%s</div><div class="h2 day">%s</div></div><div class="cell title auto"><a href="%s" title="%s" class="event-title medium-truncate-lines medium-truncate-2-lines">%s</a><div class="location medium-truncate-lines medium-truncate-2-lines">%s</div></div></div></div>',
+			'<div class="event cell medium-auto small-12"><div class="grid-x grid-padding-x"><div class="cell date shrink"><div class="month h3">%s</div><div class="h2 day">%s</div></div><div class="cell title auto"><a href="%s" title="%s" class="event-title">%s</a><div class="location">%s</div></div></div></div>',
 			$date_month,
 			$date_day,
 			$url,
@@ -184,7 +184,7 @@ function home_content() {
 	);
 
 	// Student section.
-	$student_image_id = $fields['student_section']['image'];
+	$student_image_id = $fields['student_section']['image']['ID'];
 	$output          .= sprintf(
 		$output_template['student_section'],
 		wp_get_attachment_image( $student_image_id, 'medium_large' ),

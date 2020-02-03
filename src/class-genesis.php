@@ -1,9 +1,12 @@
 <?php
 /**
- * The file that initializes Genesis features and changes for this child theme.
+ * The file that defines the core plugin class
+ *
+ * A class definition that includes attributes and functions used across both the
+ * public-facing side of the site and the admin area.
  *
  * @link       https://github.com/AgriLife/af4-aglifesciences/blob/master/src/class-genesis.php
- * @since      0.8.5
+ * @since      1.1.0
  * @package    af4-aglifesciences
  * @subpackage af4-aglifesciences/src
  */
@@ -11,40 +14,40 @@
 namespace Aglifesciences;
 
 /**
- * Sets up Genesis Framework to our needs
+ * The core plugin class
  *
- * @package AgriFlex3
- * @since 0.8.5
+ * @since 1.1.0
+ * @return void
  */
 class Genesis {
 
 	/**
 	 * Initialize the class
 	 *
-	 * @since 0.8.5
+	 * @since 1.1.0
 	 * @return void
 	 */
 	public function __construct() {
 
-		add_filter( 'af4_header_logo', array( $this, 'header_logo' ), 11, 4 );
+		// Replace site title with logo.
+		add_filter( 'genesis_seo_title', array( $this, 'add_logo' ), 10, 3 );
 
 	}
 
 	/**
-	 * Header logo and title
+	 * Initialize the class
 	 *
-	 * @since 0.8.5
-	 * @param string $inside Current title inner HTML.
-	 * @param string $old_inside Previous title inner HTML.
-	 * @param string $logo_html HTML template string.
-	 * @param string $home Homepage url.
+	 * @since 0.1.0
+	 * @param string $title Genesis SEO title html.
+	 * @param string $inside The inner HTML of the title.
+	 * @param string $wrap The tag name of the seo title wrap element.
 	 * @return string
 	 */
-	public function header_logo( $inside, $old_inside, $logo_html, $home ) {
+	public function add_logo( $title, $inside, $wrap ) {
 
-		$inside = sprintf(
+		$new_inside = sprintf(
 			'<div class="logo"><a href="%s" title="%s"><img class="logo-long" src="%s" alt="%s"><img class="logo-long-light" src="%s" alt="%s"><img class="logo-break" src="%s" alt="%s"></a></div>',
-			$home,
+			trailingslashit( home_url() ),
 			get_bloginfo( 'name' ),
 			ALSAF4_DIR_URL . 'images/logo-coals-long.svg',
 			get_bloginfo( 'name' ),
@@ -54,8 +57,9 @@ class Genesis {
 			get_bloginfo( 'name' )
 		);
 
-		return $inside;
+		$title = str_replace( $inside, $new_inside, $title );
+
+		return $title;
 
 	}
-
 }
