@@ -1,0 +1,29 @@
+.site-header {
+
+	// Show the long, light logo on mobile when sticky header is active.
+	.logo-break,
+	.logo-long-light {
+		display: none;
+	}
+
+	$new-break: rem-calc($break-medium - 1);
+	@include breakpoint($new-break down) {
+		text-align: left;
+
+		.logo-long {
+			display: none;
+		}
+
+		.is-anchored {
+			.logo-break {
+				display: inline-block;
+			}
+		}
+
+		.is-stuck {
+			.logo-long-light {
+				display: inline-block;
+			}
+		}
+	}
+}

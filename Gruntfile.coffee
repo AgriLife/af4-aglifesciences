@@ -15,6 +15,7 @@ module.exports = (grunt) ->
           ]
           failOnError: true
         files:
+          'css/aglifesciences.css': 'css/aglifesciences.css'
           'css/home.css': 'css/home.css'
       dev:
         options:
@@ -24,6 +25,7 @@ module.exports = (grunt) ->
           ]
           failOnError: true
         files:
+          'css/aglifesciences.css': 'css/aglifesciences.css'
           'css/home.css': 'css/home.css'
     sass:
       pkg:
@@ -34,6 +36,7 @@ module.exports = (grunt) ->
           precision: 2
           includePaths: ['node_modules/foundation-sites/scss']
         files:
+          'css/aglifesciences.css': 'css/src/aglifesciences.scss'
           'css/home.css': 'css/src/home.scss'
       dev:
         options:
@@ -43,6 +46,7 @@ module.exports = (grunt) ->
           precision: 2
           includePaths: ['node_modules/foundation-sites/scss']
         files:
+          'css/aglifesciences.css': 'css/src/aglifesciences.scss'
           'css/home.css': 'css/src/home.scss'
     sasslint:
       options:

@@ -93,8 +93,13 @@ class Aglifesciences {
 	 */
 	private function require_classes() {
 
+		// Add assets.
+		require_once ALSAF4_DIR_PATH . '/src/class-assets.php';
+		new \Aglifesciences\Assets();
+
 		// Add Genesis hooks.
 		require_once ALSAF4_DIR_PATH . '/src/class-genesis.php';
+		new \Aglifesciences\Genesis();
 
 		// Add page templates.
 		require_once ALSAF4_DIR_PATH . '/src/class-pagetemplate.php';
@@ -158,7 +163,7 @@ class Aglifesciences {
 
 		// We share the level taxonomy with other custom post types.
 		if ( ! taxonomy_exists( 'level' ) ) {
-			new \DegreePrograms\Taxonomy(
+			new \Aglifesciences\Taxonomy(
 				'Level',
 				'level',
 				null,
