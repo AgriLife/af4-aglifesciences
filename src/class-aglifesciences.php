@@ -93,6 +93,9 @@ class Aglifesciences {
 	 */
 	private function require_classes() {
 
+		// Add Genesis hooks.
+		require_once ALSAF4_DIR_PATH . '/src/class-genesis.php';
+
 		// Add page templates.
 		require_once ALSAF4_DIR_PATH . '/src/class-pagetemplate.php';
 
