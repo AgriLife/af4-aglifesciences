@@ -1,0 +1,15 @@
+.nav-primary {
+	@include breakpoint(medium) {
+		.submenu {
+			li:not(.menu-item-has-children) {
+				border-bottom: $nav-submenu-item-border;
+			}
+		}
+	}
+}
+
+.submenu {
+	li:not(.menu-item-has-children) {
+		border-bottom: $nav-submenu-item-border;
+	}
+}

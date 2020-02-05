@@ -145,7 +145,21 @@ $footer-font-weight: 400;
 /* END copy from github.com/agrilife/agriflex4/css/src/_settings.scss */
 
 /* Copy from github.com/agrilife/af4-college/css/src/_settings.scss */
+$global-menu-padding-top: 0.7rem;
+$global-menu-padding-side: 1rem;
+$global-menu-padding: $global-menu-padding-top $global-menu-padding-side;
+$logo-width: 3.8rem;
+$logo-width-stuck: 3.8rem;
+$nav-item-padding-top-stuck: $global-menu-padding-top - .3rem;
+$nav-height: 1rem + $global-menu-padding-top * 2;
+$nav-height-stuck: 1.3rem;
+$nav-blue: #003C71;
+$nav-bg-gray: #E7E7E7;
 $nav-yellow: #FFE404;
+$anchor-color: $black;
+$anchor-color-hover: $nav-blue;
+$nav-submenu-item-border: 1px dashed $dark-blue;
+$red: #F00;
 /* END copy from github.com/agrilife/af4-college/css/src/_settings.scss */
 
 $gray-lighterest: #F3F3F3;
