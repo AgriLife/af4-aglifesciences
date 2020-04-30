@@ -144,44 +144,49 @@ function home_content() {
 	}
 
 	// Livewhale.
-	$feed_json    = wp_remote_get( 'https://calendar.tamu.edu/live/json/events/group/College%20of%20Agriculture%20and%20Life%20Sciences/only_starred/true/hide_repeats/true/' );
-	$feed_array   = json_decode( $feed_json['body'], true );
-	$l_events     = array_slice( $feed_array, 0, 3 ); // Choose number of events.
-	$l_event_list = '';
+	$feed_json = wp_remote_get( 'https://calendar.tamu.edu/live/json/events/group/College%20of%20Agriculture%20and%20Life%20Sciences/only_starred/true/hide_repeats/true/' );
 
-	foreach ( $l_events as $event ) {
+	if ( false === is_wp_error( $feed_json ) ) {
 
-		$title      = $event['title'];
-		$url        = $event['url'];
-		$location   = $event['location'];
-		$date       = $event['date_utc'];
-		$time       = $event['date_time'];
-		$date       = date_create( $date );
-		$date_day   = date_format( $date, 'd' );
-		$date_month = date_format( $date, 'M' );
+		$feed_array   = json_decode( $feed_json['body'], true );
+		$l_events     = array_slice( $feed_array, 0, 3 ); // Choose number of events.
+		$l_event_list = '';
 
-		if ( array_key_exists( 'custom_room_number', $event ) && ! empty( $event['custom_room_number'] ) ) {
+		foreach ( $l_events as $event ) {
 
-			$location .= ' ' . $event['custom_room_number'];
+			$title      = $event['title'];
+			$url        = $event['url'];
+			$location   = $event['location'];
+			$date       = $event['date_utc'];
+			$time       = $event['date_time'];
+			$date       = date_create( $date );
+			$date_day   = date_format( $date, 'd' );
+			$date_month = date_format( $date, 'M' );
+
+			if ( array_key_exists( 'custom_room_number', $event ) && ! empty( $event['custom_room_number'] ) ) {
+
+				$location .= ' ' . $event['custom_room_number'];
+
+			}
+
+			$l_event_list .= sprintf(
+				'<div class="event cell medium-auto small-12"><div class="grid-x grid-padding-x"><div class="cell date shrink"><div class="month h3">%s</div><div class="h2 day">%s</div></div><div class="cell title auto"><a href="%s" title="%s" class="event-title">%s</a><div class="location">%s</div></div></div></div>',
+				$date_month,
+				$date_day,
+				$url,
+				$title,
+				$title,
+				$location
+			);
 
 		}
 
-		$l_event_list .= sprintf(
-			'<div class="event cell medium-auto small-12"><div class="grid-x grid-padding-x"><div class="cell date shrink"><div class="month h3">%s</div><div class="h2 day">%s</div></div><div class="cell title auto"><a href="%s" title="%s" class="event-title">%s</a><div class="location">%s</div></div></div></div>',
-			$date_month,
-			$date_day,
-			$url,
-			$title,
-			$title,
-			$location
+		$output .= sprintf(
+			$output_template['livewhale'],
+			$l_event_list
 		);
 
 	}
-
-	$output .= sprintf(
-		$output_template['livewhale'],
-		$l_event_list
-	);
 
 	// Student section.
 	$student_image_id = $fields['student_section']['image']['ID'];
