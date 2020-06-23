@@ -34,12 +34,11 @@ $primary-color: $maroon;
 
 /* Fonts
 --------------------------------------------- */
-$tungsten: "Tungsten A", "Tungsten B", "Oswald", sans-serif;
+$tamu-header-font: "Oswald", sans-serif;
 $monoton: "Monoton", cursive;
 $opensans: "Open Sans", sans-serif;
-$header-font-family: $tungsten;
+$header-font-family: $tamu-header-font;
 $header-lineheight: 1.35;
-$header-lineheight-tungsten: .9;
 $template-header-font-family: $monoton;
 $header-color-alt: lighten( $maroon, 12% );
 
