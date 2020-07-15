@@ -32,51 +32,6 @@ class Genesis {
 		// Replace site title with logo.
 		add_filter( 'genesis_seo_title', array( $this, 'add_logo' ), 10, 3 );
 
-		add_action( 'init', array( $this, 'init' ), 13 );
-
-	}
-
-	/**
-	 * Init
-	 *
-	 * @since 1.1.2
-	 * @return void
-	 */
-	public function init() {
-
-		global $afc_genesis;
-		remove_filter( 'genesis_markup_title-area_close', array( $afc_genesis, 'college_mobile_nav_toggle' ), 99, 2 );
-		add_filter( 'genesis_markup_title-area_open', array( $this, 'college_mobile_nav_toggle' ), 99, 2 );
-
-	}
-
-	/**
-	 * Add AgriFlex4 menu and nav primary toggles for mobile
-	 *
-	 * @since 1.1.2
-	 * @param string $output Current output for Genesis title area open element.
-	 * @param array  $args Arguments for Genesis title area open element.
-	 * @return string
-	 */
-	public function college_mobile_nav_toggle( $output, $args ) {
-
-		global $af_required;
-
-		$open_m  = str_replace( 'small-6', 'shrink', $af_required->af4_nav_primary_title_bar_open() );
-		$open_m  = str_replace( 'title-bar-right', 'title-bar-left', $open_m );
-		$menu_m  = $af_required->add_menu_toggle();
-		$menu_m  = str_replace( '<div class="title-bar-title" data-toggle="nav-menu-primary">Menu</div>', '', $menu_m );
-		$close_m = $af_required->af4_nav_primary_title_bar_close();
-		$m       = $open_m . $menu_m . $close_m;
-
-		if ( ! empty( $args['open'] ) && false === strpos( $output, $m ) ) {
-
-			$output = $m . $output;
-
-		}
-
-		return $output;
-
 	}
 
 	/**
