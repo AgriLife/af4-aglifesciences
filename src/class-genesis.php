@@ -32,6 +32,9 @@ class Genesis {
 		// Replace site title with logo.
 		add_filter( 'genesis_seo_title', array( $this, 'add_logo' ), 10, 3 );
 
+		// Add Department navigation menu.
+		add_filter( 'wp_nav_menu_items', array( $this, 'add_department_nav_menu' ), 10, 2 );
+
 	}
 
 	/**
@@ -60,6 +63,59 @@ class Genesis {
 		$title = str_replace( $inside, $new_inside, $title );
 
 		return $title;
+
+	}
+
+	/**
+	 * Add the Department navigation menu to the site header.
+	 *
+	 * @since 1.4.0
+	 * @param string   $items  The HTML list content for the menu items.
+	 * @param stdClass $args An object containing wp_nav_menu() arguments.
+	 * @return string
+	 */
+	public function add_department_nav_menu( $items, $args ) {
+
+		if ( 'primary' === $args->theme_location && has_nav_menu( 'college-dept-menu' ) ) {
+
+			$menu      = array(
+				'theme_location' => 'college-dept-menu',
+				'menu_class'     => 'menu submenu sub-menu vertical medium-horizontal menu-depth-1 first-sub',
+				'container'      => '',
+			);
+			$dept_item = '<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children unlinked dept-nav" role="menuitem" aria-haspopup="true" aria-label="Departments"><a href="#" itemprop="url">Departments</a>%s</li>';
+
+			ob_start();
+			wp_nav_menu( $menu );
+			$depnav = ob_get_contents();
+			ob_end_clean();
+
+			$deptmenu = sprintf( $dept_item, $depnav );
+
+			// Convert menu item string to array.
+			$items_array = array();
+			$item_pos    = strpos( $items, '<li', 10 );
+			while ( false !== $item_pos ) {
+				$items_array[] = substr( $items, 0, $item_pos );
+				$items         = substr( $items, $item_pos );
+				$item_pos      = strpos( $items, '<li', 10 );
+			}
+			$items_array[] = $items;
+
+			if ( false !== strpos( $items_array[0], trailingslashit( home_url() ) ) ) {
+				// The first nav menu item is Home; insert the item after it.
+				array_splice( $items_array, 1, 0, $deptmenu );
+			} else {
+				// Insert it at the beginning of the menu.
+				array_unshift( $items_array, $deptmenu );
+			}
+
+			// Convert menu item array to string.
+			$items = implode( '', $items_array );
+
+		}
+
+		return $items;
 
 	}
 }

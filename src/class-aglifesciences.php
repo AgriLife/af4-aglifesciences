@@ -64,6 +64,8 @@ class Aglifesciences {
 
 		$this->register_post_types();
 
+		register_nav_menu( 'college-dept-menu', __( 'Department Navigation Menu' ) );
+
 	}
 
 	/**
