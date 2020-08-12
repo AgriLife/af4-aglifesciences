@@ -76,7 +76,11 @@ class Genesis {
 	 */
 	public function add_department_nav_menu( $items, $args ) {
 
-		if ( 'primary' === $args->theme_location && has_nav_menu( 'college-dept-menu' ) ) {
+		if (
+			'primary' === $args->theme_location &&
+			false === strpos( $items, 'dept-nav' ) &&
+			has_nav_menu( 'college-dept-menu' )
+		) {
 
 			$menu      = array(
 				'theme_location' => 'college-dept-menu',
