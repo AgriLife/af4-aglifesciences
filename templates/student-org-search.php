@@ -276,7 +276,7 @@ function student_organization_content() {
 		$thumb      = wp_get_attachment_image( $thumb_id, 'medium_cropped' );
 		$tag        = 'div';
 		$link       = array_key_exists( 'link', $fields ) ? $fields['link'] : false;
-		$link_open  = $link ? "<a href=\"{$link}\" class=\"wrap\" title=\"{$post->post_title}\" target=\"_blank\">" : '<div class=\"wrap\">';
+		$link_open  = $link ? "<a href=\"{$link['url']}\" class=\"wrap\" title=\"{$post->post_title}\" target=\"_blank\">" : '<div class=\"wrap\">';
 		$link_close = $link ? '</a>' : '</div>';
 
 		foreach ( $terms as $term ) {
