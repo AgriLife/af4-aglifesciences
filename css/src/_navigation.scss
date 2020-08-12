@@ -1,7 +1,7 @@
 .nav-primary {
 	@include breakpoint(medium) {
 		.submenu {
-			li:not(.menu-item-has-children) {
+			li:not(.menu-item-has-children):not(:last-child) {
 				border-bottom: $nav-submenu-item-border;
 			}
 		}
@@ -9,7 +9,7 @@
 }
 
 .submenu {
-	li:not(.menu-item-has-children) {
+	li:not(.menu-item-has-children):not(:last-child) {
 		border-bottom: $nav-submenu-item-border;
 	}
 }
