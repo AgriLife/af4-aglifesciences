@@ -53,7 +53,7 @@ function home_content() {
 	$fields          = get_field( 'home' );
 	$output          = '';
 	$output_template = array(
-		'top'             => '<div class="alignfull no-padding top"><h2><span>%s</span></h2>%s</div>',
+		'top'             => '<div class="alignfull no-padding top">%s%s</div>',
 		'action_items'    => '<div class="alignfull invert action-items"><div class="grid-container"><div class="grid-x grid-padding-x padding-y">%s</div></div></div>',
 		'about_research'  => '<div class="alignfull no-padding about-research"><div class="grid-container"><div class="grid-x grid-padding-x"><div class="about cell center-y padding-y medium-6 small-12"><div class="center-y-wrap"><h2>%s</h2>%s<a class="button" href="%s" target="%s">%s</a></div></div><div class="research cell medium-6 small-12"><a href="%s"><h3 class="h2"><span class="first-word-wrap"><span class="first-word">Research</span></span> <span class="second-word">Stories</span></h3>%s<div class="excerpt">%s</div></a></div></div></div></div>',
 		'events'          => '<div class="alignfull events invert"><div class="grid-container"><div class="grid-x grid-padding-x padding-y"><h2 class="cell medium-12 small-12">Events</h2>%s</div></div></div>',
@@ -62,11 +62,21 @@ function home_content() {
 	);
 
 	// Top image.
-	$output .= sprintf(
-		$output_template['top'],
-		$fields['top_group']['title'],
-		$fields['top_group']['content']
-	);
+	$top_title   = '';
+	$top_content = '';
+	if ( ! empty( $fields['top_group']['title'] ) ) {
+		$top_title = "<h2><span>{$fields['top_group']['title']}</span></h2>";
+	}
+	if ( ! empty( $fields['top_group']['content'] ) ) {
+		$top_content = $fields['top_group']['content'];
+	}
+	if ( ! empty( $top_title ) || ! empty( $top_content ) ) {
+		$output .= sprintf(
+			$output_template['top'],
+			$top_title,
+			$top_content
+		);
+	}
 
 	// Action items.
 	if ( $fields['action_items'] ) {
